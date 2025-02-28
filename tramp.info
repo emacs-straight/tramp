@@ -1,4 +1,4 @@
-This is docPvchp2.info, produced by makeinfo version 6.8 from
+This is doc3fYIZF.info, produced by makeinfo version 6.8 from
 tramp.texi.
 
 Copyright © 1999–2025 Free Software Foundation, Inc.
@@ -20,12 +20,12 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docPvchp2.info,  Node: Top,  Next: Overview,  Prev: (dir),  Up: (dir)
+File: doc3fYIZF.info,  Node: Top,  Next: Overview,  Prev: (dir),  Up: (dir)
 
-TRAMP 2.7.2.1 User Manual
+TRAMP 2.7.2.2 User Manual
 *************************
 
-This file documents TRAMP 2.7.2.1, a remote file editing package for
+This file documents TRAMP 2.7.2.2, a remote file editing package for
 Emacs.
 
    TRAMP stands for “Transparent Remote (file) Access, Multiple
@@ -131,7 +131,7 @@ How file names, directories and localnames are mangled and managed
 
 
 
-File: docPvchp2.info,  Node: Overview,  Next: Obtaining TRAMP,  Up: Top
+File: doc3fYIZF.info,  Node: Overview,  Next: Obtaining TRAMP,  Up: Top
 
 1 An overview of TRAMP
 **********************
@@ -254,7 +254,7 @@ behind the scenes when you open a file with TRAMP.
    (1) *note Temporary directory::
 
 
-File: docPvchp2.info,  Node: Obtaining TRAMP,  Next: Quick Start Guide,  Prev: Overview,  Up: Top
+File: doc3fYIZF.info,  Node: Obtaining TRAMP,  Next: Quick Start Guide,  Prev: Overview,  Up: Top
 
 2 Obtaining TRAMP
 *****************
@@ -324,7 +324,7 @@ Run ‘autoconf’ as follows to generate an up-to-date ‘configure’ script:
 how to install TRAMP.
 
 
-File: docPvchp2.info,  Node: Quick Start Guide,  Next: Configuration,  Prev: Obtaining TRAMP,  Up: Top
+File: doc3fYIZF.info,  Node: Quick Start Guide,  Next: Configuration,  Prev: Obtaining TRAMP,  Up: Top
 
 3 Short introduction how to use TRAMP
 *************************************
@@ -466,7 +466,7 @@ accessed via the ‘adb’ command.  No user or host name is needed.  The
 file name syntax is ‘/adb::/path/to/file’.
 
 
-File: docPvchp2.info,  Node: Configuration,  Next: Usage,  Prev: Quick Start Guide,  Up: Top
+File: doc3fYIZF.info,  Node: Configuration,  Next: Usage,  Prev: Quick Start Guide,  Up: Top
 
 4 Configuring TRAMP
 *******************
@@ -530,7 +530,7 @@ non-‘nil’, *Note (emacs)Directory Variables::.
 * Keeping files encrypted::     Protect remote files by encryption.
 
 
-File: docPvchp2.info,  Node: Optional methods,  Next: Connection types,  Up: Configuration
+File: doc3fYIZF.info,  Node: Optional methods,  Next: Connection types,  Up: Configuration
 
 4.1 Optional methods which must be enabled first
 ================================================
@@ -551,7 +551,7 @@ like this to your ‘.emacs’ file:
      (with-eval-after-load 'tramp (tramp-enable-method "toolbox"))
 
 
-File: docPvchp2.info,  Node: Connection types,  Next: Inline methods,  Prev: Optional methods,  Up: Configuration
+File: doc3fYIZF.info,  Node: Connection types,  Next: Inline methods,  Prev: Optional methods,  Up: Configuration
 
 4.2 Types of connections to remote hosts
 ========================================
@@ -579,7 +579,7 @@ should consider *note Password handling::, otherwise you will be
 prompted for a password for every copy action.
 
 
-File: docPvchp2.info,  Node: Inline methods,  Next: External methods,  Prev: Connection types,  Up: Configuration
+File: doc3fYIZF.info,  Node: Inline methods,  Next: External methods,  Prev: Connection types,  Up: Configuration
 
 4.3 Inline methods
 ==================
@@ -796,7 +796,7 @@ ways:
      This is an optional method, *note Optional methods::.
 
 
-File: docPvchp2.info,  Node: External methods,  Next: GVFS-based methods,  Prev: Inline methods,  Up: Configuration
+File: doc3fYIZF.info,  Node: External methods,  Next: GVFS-based methods,  Prev: Inline methods,  Up: Configuration
 
 4.4 External methods
 ====================
@@ -838,7 +838,8 @@ files smaller than ‘tramp-copy-size-limit’ still use inline methods.
 
      ‘rsync’ performs much better than ‘scp’ when transferring files
      that exist on both hosts.  However, this advantage is lost if the
-     file exists only on one side of the connection.
+     file exists only on one side of the connection, during the first
+     file transfer.
 
      This method supports the ‘-p’ argument.
 
@@ -1022,7 +1023,7 @@ files smaller than ‘tramp-copy-size-limit’ still use inline methods.
      applicable to Android devices connected through USB.
 
 
-File: docPvchp2.info,  Node: GVFS-based methods,  Next: FUSE-based methods,  Prev: External methods,  Up: Configuration
+File: doc3fYIZF.info,  Node: GVFS-based methods,  Next: FUSE-based methods,  Prev: External methods,  Up: Configuration
 
 4.5 GVFS-based external methods
 ===============================
@@ -1120,7 +1121,7 @@ TRAMP can use GVFS-based methods.
           (customize-set-variable 'tramp-ftp-method nil)
 
 
-File: docPvchp2.info,  Node: FUSE-based methods,  Next: Default Method,  Prev: GVFS-based methods,  Up: Configuration
+File: doc3fYIZF.info,  Node: FUSE-based methods,  Next: Default Method,  Prev: GVFS-based methods,  Up: Configuration
 
 4.6 FUSE-based external methods
 ===============================
@@ -1180,7 +1181,7 @@ this is not possible, TRAMP emulates those operations otherwise.
      properties, *Note Setup of sshfs method::.
 
 
-File: docPvchp2.info,  Node: Default Method,  Next: Default User,  Prev: FUSE-based methods,  Up: Configuration
+File: doc3fYIZF.info,  Node: Default Method,  Next: Default User,  Prev: FUSE-based methods,  Up: Configuration
 
 4.7 Selecting a default method
 ==============================
@@ -1261,7 +1262,7 @@ faster than ‘plink’.  But this speed improvement is not always true.
 Windows.  Use method ‘sshx’.
 
 
-File: docPvchp2.info,  Node: Default User,  Next: Default Host,  Prev: Default Method,  Up: Configuration
+File: doc3fYIZF.info,  Node: Default User,  Next: Default Host,  Prev: Default Method,  Up: Configuration
 
 4.8 Selecting a default user
 ============================
@@ -1299,7 +1300,7 @@ File: docPvchp2.info,  Node: Default User,  Next: Default Host,  Prev: Default M
                        '(nil nil "jonas") t)
 
 
-File: docPvchp2.info,  Node: Default Host,  Next: Multi-hops,  Prev: Default User,  Up: Configuration
+File: doc3fYIZF.info,  Node: Default Host,  Next: Multi-hops,  Prev: Default User,  Up: Configuration
 
 4.9 Selecting a default host
 ============================
@@ -1329,7 +1330,7 @@ File: docPvchp2.info,  Node: Default Host,  Next: Multi-hops,  Prev: Default Use
      ‘/nspawn::’ and ‘/sudo::’ have the same effect.
 
 
-File: docPvchp2.info,  Node: Multi-hops,  Next: Firewalls,  Prev: Default Host,  Up: Configuration
+File: doc3fYIZF.info,  Node: Multi-hops,  Next: Firewalls,  Prev: Default Host,  Up: Configuration
 
 4.10 Connecting to a remote host using multiple hops
 ====================================================
@@ -1423,7 +1424,7 @@ only.
                        "\\`bastion\\.your\\.domain\\'")
 
 
-File: docPvchp2.info,  Node: Firewalls,  Next: Customizing Methods,  Prev: Multi-hops,  Up: Configuration
+File: doc3fYIZF.info,  Node: Firewalls,  Next: Customizing Methods,  Prev: Multi-hops,  Up: Configuration
 
 4.11 Passing firewalls
 ======================
@@ -1463,7 +1464,7 @@ option, and add ‘proxy.your.domain’ as ‘Proxy hostname’, and 3128 as
 ‘proxy.your.domain’ on port 3128.
 
 
-File: docPvchp2.info,  Node: Customizing Methods,  Next: Customizing Completion,  Prev: Firewalls,  Up: Configuration
+File: doc3fYIZF.info,  Node: Customizing Methods,  Next: Customizing Completion,  Prev: Firewalls,  Up: Configuration
 
 4.12 Using Non-Standard Methods
 ===============================
@@ -1508,7 +1509,7 @@ They can be installed with Emacs’s Package Manager.  This includes
      where ‘box’ is the name of the vagrant box.
 
 
-File: docPvchp2.info,  Node: Customizing Completion,  Next: Password handling,  Prev: Customizing Methods,  Up: Configuration
+File: doc3fYIZF.info,  Node: Customizing Completion,  Next: Password handling,  Prev: Customizing Methods,  Up: Configuration
 
 4.13 Selecting config files for user/host name completion
 =========================================================
@@ -1607,7 +1608,7 @@ following conventions:
                ⇒ ((nil "toto") ("daniel" "melancholia"))
 
 
-File: docPvchp2.info,  Node: Password handling,  Next: Connection caching,  Prev: Customizing Completion,  Up: Configuration
+File: doc3fYIZF.info,  Node: Password handling,  Next: Connection caching,  Prev: Customizing Completion,  Up: Configuration
 
 4.14 Reusing passwords for several connections
 ==============================================
@@ -1702,7 +1703,7 @@ authentication file or store.
    (2) It overrides ‘password-cache-expiry’.
 
 
-File: docPvchp2.info,  Node: Connection caching,  Next: Predefined connection information,  Prev: Password handling,  Up: Configuration
+File: doc3fYIZF.info,  Node: Connection caching,  Next: Predefined connection information,  Prev: Password handling,  Up: Configuration
 
 4.15 Reusing connection related information
 ===========================================
@@ -1726,7 +1727,7 @@ remote host (via the command ‘uname -sr’), it flushes all connection
 related information for that host and creates a new entry.
 
 
-File: docPvchp2.info,  Node: Predefined connection information,  Next: Remote programs,  Prev: Connection caching,  Up: Configuration
+File: doc3fYIZF.info,  Node: Predefined connection information,  Next: Remote programs,  Prev: Connection caching,  Up: Configuration
 
 4.16 Setting own connection related information
 ===============================================
@@ -1846,7 +1847,7 @@ properties are listed here:
      want to change their values.
 
 
-File: docPvchp2.info,  Node: Remote programs,  Next: Remote shell setup,  Prev: Predefined connection information,  Up: Configuration
+File: doc3fYIZF.info,  Node: Remote programs,  Next: Remote shell setup,  Prev: Predefined connection information,  Up: Configuration
 
 4.17 How TRAMP finds and uses programs on the remote host
 =========================================================
@@ -1913,7 +1914,7 @@ tramp-cleanup-this-connection <RET>’ or friends (*note Cleanup remote
 connections::).
 
 
-File: docPvchp2.info,  Node: Remote shell setup,  Next: Ssh setup,  Prev: Remote programs,  Up: Configuration
+File: doc3fYIZF.info,  Node: Remote shell setup,  Next: Ssh setup,  Prev: Remote programs,  Up: Configuration
 
 4.18 Remote shell setup hints
 =============================
@@ -2163,7 +2164,7 @@ Interactive shell prompt
      connection information::).
 
 
-File: docPvchp2.info,  Node: Ssh setup,  Next: FUSE setup,  Prev: Remote shell setup,  Up: Configuration
+File: doc3fYIZF.info,  Node: Ssh setup,  Next: FUSE setup,  Prev: Remote shell setup,  Up: Configuration
 
 4.19 Ssh setup hints
 ====================
@@ -2359,7 +2360,7 @@ Suite of tools.
    The fallback is to start Emacs from a shell.
 
 
-File: docPvchp2.info,  Node: FUSE setup,  Next: Android shell setup,  Prev: Ssh setup,  Up: Configuration
+File: doc3fYIZF.info,  Node: FUSE setup,  Next: Android shell setup,  Prev: Ssh setup,  Up: Configuration
 
 4.20 FUSE setup hints
 =====================
@@ -2413,7 +2414,7 @@ processes, using the ‘ssh’ command.  These don’t need to be changed.
    (1) *note Temporary directory::
 
 
-File: docPvchp2.info,  Node: Android shell setup,  Next: Kubernetes setup,  Prev: FUSE setup,  Up: Configuration
+File: doc3fYIZF.info,  Node: Android shell setup,  Next: Kubernetes setup,  Prev: FUSE setup,  Up: Configuration
 
 4.21 Android shell setup hints
 ==============================
@@ -2492,7 +2493,7 @@ provided these settings are adjusted:
      /ssh:android: <RET>’.
 
 
-File: docPvchp2.info,  Node: Kubernetes setup,  Next: Auto-save File Lock and Backup,  Prev: Android shell setup,  Up: Configuration
+File: doc3fYIZF.info,  Node: Kubernetes setup,  Next: Auto-save File Lock and Backup,  Prev: Android shell setup,  Up: Configuration
 
 4.22 Kubernetes setup hints
 ===========================
@@ -2513,7 +2514,7 @@ context or namespace shall be used, configure the user options
 ‘tramp-kubernetes-context’ and ‘tramp-kubernetes-namespace’.
 
 
-File: docPvchp2.info,  Node: Auto-save File Lock and Backup,  Next: Keeping files encrypted,  Prev: Kubernetes setup,  Up: Configuration
+File: doc3fYIZF.info,  Node: Auto-save File Lock and Backup,  Next: Keeping files encrypted,  Prev: Kubernetes setup,  Up: Configuration
 
 4.23 Auto-save, File Lock and Backup configuration
 ==================================================
@@ -2610,7 +2611,7 @@ directory.  If you want to suppress this confirmation question, set user
 option ‘tramp-allow-unsafe-temporary-files’ to ‘t’.
 
 
-File: docPvchp2.info,  Node: Keeping files encrypted,  Prev: Auto-save File Lock and Backup,  Up: Configuration
+File: doc3fYIZF.info,  Node: Keeping files encrypted,  Prev: Auto-save File Lock and Backup,  Up: Configuration
 
 4.24 Protect remote files by encryption
 =======================================
@@ -2704,7 +2705,7 @@ directory.
      subdirectories will remain encrypted.
 
 
-File: docPvchp2.info,  Node: Usage,  Next: Bug Reports,  Prev: Configuration,  Up: Top
+File: doc3fYIZF.info,  Node: Usage,  Next: Bug Reports,  Prev: Configuration,  Up: Top
 
 5 Using TRAMP
 *************
@@ -2735,7 +2736,7 @@ Emacs that may cause missed prompts when using TRAMP.
 * Archive file names::          Access to files in file archives.
 
 
-File: docPvchp2.info,  Node: File name syntax,  Next: Change file name syntax,  Up: Usage
+File: doc3fYIZF.info,  Node: File name syntax,  Next: Change file name syntax,  Up: Usage
 
 5.1 TRAMP file name conventions
 ===============================
@@ -2783,7 +2784,7 @@ Default Host::.  For syntactical reasons, the default method must be
 indicated by the pseudo method ‘-’.
 
 
-File: docPvchp2.info,  Node: Change file name syntax,  Next: File name completion,  Prev: File name syntax,  Up: Usage
+File: doc3fYIZF.info,  Node: Change file name syntax,  Next: File name completion,  Prev: File name syntax,  Up: Usage
 
 5.2 Alternative file name syntax
 ================================
@@ -2818,7 +2819,7 @@ changed.
      more appropriate.  *note (elisp)Magic File Names::.
 
 
-File: docPvchp2.info,  Node: File name completion,  Next: Ad-hoc multi-hops,  Prev: Change file name syntax,  Up: Usage
+File: doc3fYIZF.info,  Node: File name completion,  Next: Ad-hoc multi-hops,  Prev: Change file name syntax,  Up: Usage
 
 5.3 File name completion
 ========================
@@ -2884,7 +2885,7 @@ Example:
           ⊣ /etc
 
 
-File: docPvchp2.info,  Node: Ad-hoc multi-hops,  Next: Home directories,  Prev: File name completion,  Up: Usage
+File: doc3fYIZF.info,  Node: Ad-hoc multi-hops,  Next: Home directories,  Prev: File name completion,  Up: Usage
 
 5.4 Declaring multiple hops in the file name
 ============================================
@@ -2904,14 +2905,20 @@ name and file name.  For example, hopping over a single proxy
    Each involved method must be an inline method (*note Inline
 methods::).
 
-   TRAMP adds the ad-hoc definitions on the fly to
-‘tramp-default-proxies-alist’ and is available for reuse during that
+   TRAMP adds the ad-hoc definitions as an ephemeral record to
+‘tramp-default-proxies-alist’, which are available for reuse during that
 Emacs session.  Subsequent TRAMP connections to the same remote host can
-then use the shortcut form: ‘/ssh:you@remotehost:/path’.
+then use the abbreviated form ‘/ssh:you@remotehost:/path’.
 
  -- User Option: tramp-show-ad-hoc-proxies
      If this user option is non-‘nil’, ad-hoc definitions are kept in
-     remote file names instead of showing the shortcuts.
+     remote file names instead of showing the abbreviations.  This is
+     useful if the ad-hoc proxy definition shall be used in further
+     Emacs sessions, kept in configuration files of recentf and other
+     packages.
+
+     A non-‘nil’ setting of this option has effect only if set before
+     the connection is established.
 
           (customize-set-variable 'tramp-show-ad-hoc-proxies t)
 
@@ -2922,7 +2929,14 @@ remote connections::).
  -- User Option: tramp-save-ad-hoc-proxies
      For ad-hoc definitions to be saved automatically in
      ‘tramp-default-proxies-alist’ for future Emacs sessions, set
-     ‘tramp-save-ad-hoc-proxies’ to non-‘nil’.
+     ‘tramp-save-ad-hoc-proxies’ to non-‘nil’.  The resulting user
+     option ‘tramp-default-proxies-alist’ is saved in your ‘.emacs’
+     file.
+
+     If you use saved configuration files with abbreviated ad-hoc proxy
+     definitions on another host, for example by distribution of the
+     ‘recentf-save-file’, you must distribute your ‘.emacs’ file as
+     well.
 
           (customize-set-variable 'tramp-save-ad-hoc-proxies t)
 
@@ -2966,7 +2980,7 @@ shall be taken, add a proper rule to the user option
      (add-to-list 'tramp-default-user-alist '("sudo" "remotehost" "admin"))
 
 
-File: docPvchp2.info,  Node: Home directories,  Next: Remote processes,  Prev: Ad-hoc multi-hops,  Up: Usage
+File: doc3fYIZF.info,  Node: Home directories,  Next: Remote processes,  Prev: Ad-hoc multi-hops,  Up: Usage
 
 5.5 Expanding ‘~’ to home directory
 ===================================
@@ -3011,7 +3025,7 @@ Example:
 connection property "~" must be used instead.
 
 
-File: docPvchp2.info,  Node: Remote processes,  Next: Cleanup remote connections,  Prev: Home directories,  Up: Usage
+File: doc3fYIZF.info,  Node: Remote processes,  Next: Cleanup remote connections,  Prev: Home directories,  Up: Usage
 
 5.6 Integration with other Emacs packages
 =========================================
@@ -3516,7 +3530,7 @@ information::) via
      (add-to-list 'tramp-connection-properties (list "/ssh:" "direct-async" t))
 
 
-File: docPvchp2.info,  Node: Cleanup remote connections,  Next: Renaming remote files,  Prev: Remote processes,  Up: Usage
+File: doc3fYIZF.info,  Node: Cleanup remote connections,  Next: Renaming remote files,  Prev: Remote processes,  Up: Usage
 
 5.7 Cleanup remote connections
 ==============================
@@ -3566,7 +3580,7 @@ TRAMP provides several ways to flush remote connections.
      buffers, and buffers related to a remote process are cleaned up.
 
 
-File: docPvchp2.info,  Node: Renaming remote files,  Next: Archive file names,  Prev: Cleanup remote connections,  Up: Usage
+File: doc3fYIZF.info,  Node: Renaming remote files,  Next: Archive file names,  Prev: Cleanup remote connections,  Up: Usage
 
 5.8 Renaming remote files
 =========================
@@ -3660,7 +3674,7 @@ anymore.
      ‘tramp-rename-these-files’ must be confirmed.
 
 
-File: docPvchp2.info,  Node: Archive file names,  Prev: Renaming remote files,  Up: Usage
+File: doc3fYIZF.info,  Node: Archive file names,  Prev: Renaming remote files,  Up: Usage
 
 5.9 Archive file names
 ======================
@@ -3789,7 +3803,7 @@ your init file:
      (customize-set-variable 'tramp-archive-enabled nil)
 
 
-File: docPvchp2.info,  Node: Bug Reports,  Next: Frequently Asked Questions,  Prev: Usage,  Up: Top
+File: doc3fYIZF.info,  Node: Bug Reports,  Next: Frequently Asked Questions,  Prev: Usage,  Up: Top
 
 6 Reporting Bugs and Problems
 *****************************
@@ -3875,7 +3889,7 @@ active code, and uncomment the just commented code.
 configuration.
 
 
-File: docPvchp2.info,  Node: Frequently Asked Questions,  Next: Files directories and localnames,  Prev: Bug Reports,  Up: Top
+File: doc3fYIZF.info,  Node: Frequently Asked Questions,  Next: Files directories and localnames,  Prev: Bug Reports,  Up: Top
 
 7 Frequently Asked Questions
 ****************************
@@ -4435,16 +4449,31 @@ File: docPvchp2.info,  Node: Frequently Asked Questions,  Next: Files directorie
 
      Thanks to TRAMP users for contributing to these recipes.
 
-   • Why saved multi-hop file names do not work in a new Emacs session?
+   • Why don’t saved ad-hoc multi-hop file names work in a new Emacs
+     session?
 
-     When saving ad-hoc multi-hop TRAMP file names (*note Ad-hoc
-     multi-hops::) via bookmarks, recent files, filecache, bbdb, or
-     another package, use the full ad-hoc file name including all hops,
-     like ‘/ssh:bird@bastion|ssh:news.my.domain:/opt/news/etc’.
+     By default, ad-hoc multi-hop file names are abbreviated after
+     completing the initial connection.  These abbreviated forms retain
+     only the final hop, and so only the Emacs session that generated
+     the abbreviated form can understand it.  *Note Ad-hoc multi-hops::.
 
-     Alternatively, when saving abbreviated multi-hop file names
-     ‘/ssh:news@news.my.domain:/opt/news/etc’, the user option
-     ‘tramp-save-ad-hoc-proxies’ must be set non-‘nil’ value.
+     For example, after connecting to
+     ‘/ssh:bird@bastion|ssh:news@news.my.domain:/opt/news/etc’, the file
+     name becomes ‘/ssh:news@news.my.domain:/opt/news/etc’.  If the
+     abbreviated form is saved in a bookmark, the recent files list,
+     bbdb, or similar, a new Emacs session has no way to know that the
+     connection must go through ‘bird@bastion’ first.
+
+     There are two mechanisms to deal with this.  The first is to
+     customize ‘tramp-show-ad-hoc-proxies’ to a non-‘nil’ value, which
+     disables abbreviation.  Then the fully-qualified ad-hoc multi-hop
+     file name is the one that will be both displayed and saved.  *Note
+     tramp-show-ad-hoc-proxies::.
+
+     Alternatively, you can customize ‘tramp-save-ad-hoc-proxies’ to a
+     non-‘nil’ value which means to save the information how an
+     abbreviated multi-hop file name can be expanded.  *Note
+     tramp-save-ad-hoc-proxies::.
 
    • How to connect to a remote Emacs session using TRAMP?
 
@@ -4562,7 +4591,7 @@ File: docPvchp2.info,  Node: Frequently Asked Questions,  Next: Files directorie
 
    • I get an error ‘unix_listener: path
      "/very/long/path/.cache/emacs/tramp.XXX" too long for Unix domain
-     socket’ when connectiong via ‘ssh’ to a remote host.
+     socket’ when connecting via ‘ssh’ to a remote host.
 
      By default, TRAMP uses the directory ‘~/.cache/emacs/’ for creation
      of OpenSSH Unix domain sockets.  On GNU/Linux, domain sockets have
@@ -4668,7 +4697,7 @@ File: docPvchp2.info,  Node: Frequently Asked Questions,  Next: Files directorie
    (1) It supports fingerprint readers driven by ‘fprintd’.
 
 
-File: docPvchp2.info,  Node: Files directories and localnames,  Next: Traces and Profiles,  Prev: Frequently Asked Questions,  Up: Top
+File: doc3fYIZF.info,  Node: Files directories and localnames,  Next: Traces and Profiles,  Prev: Frequently Asked Questions,  Up: Top
 
 8 How file names, directories and localnames are mangled and managed
 ********************************************************************
@@ -4681,7 +4710,7 @@ File: docPvchp2.info,  Node: Files directories and localnames,  Next: Traces and
 * Extension packages::          Adding new methods to TRAMP.
 
 
-File: docPvchp2.info,  Node: Temporary directory,  Next: Localname deconstruction,  Up: Files directories and localnames
+File: doc3fYIZF.info,  Node: Temporary directory,  Next: Localname deconstruction,  Up: Files directories and localnames
 
 8.1 Where temporary files are kept
 ==================================
@@ -4708,7 +4737,7 @@ variable ‘tramp-temp-name-prefix’ temporarily:
      ⇒ "/tmp/my-prefix.HDfgDZ"
 
 
-File: docPvchp2.info,  Node: Localname deconstruction,  Next: External packages,  Prev: Temporary directory,  Up: Files directories and localnames
+File: doc3fYIZF.info,  Node: Localname deconstruction,  Next: External packages,  Prev: Temporary directory,  Up: Files directories and localnames
 
 8.2 Splitting a localname into its component parts
 ==================================================
@@ -4723,7 +4752,7 @@ By relying on the original handlers for localnames, TRAMP benefits from
 platform specific hacks to the original handlers.
 
 
-File: docPvchp2.info,  Node: External packages,  Next: Extension packages,  Prev: Localname deconstruction,  Up: Files directories and localnames
+File: doc3fYIZF.info,  Node: External packages,  Next: Extension packages,  Prev: Localname deconstruction,  Up: Files directories and localnames
 
 8.3 Integrating with external Lisp packages
 ===========================================
@@ -4795,7 +4824,7 @@ as follows:
 sentinels, and redisplay (updating the mode line).
 
 
-File: docPvchp2.info,  Node: Extension packages,  Prev: External packages,  Up: Files directories and localnames
+File: doc3fYIZF.info,  Node: Extension packages,  Prev: External packages,  Up: Files directories and localnames
 
 8.4 Adding new methods to TRAMP
 ===============================
@@ -4897,7 +4926,7 @@ of function ‘tramp-enable-foo-method’.  Add the following code in
 ‘tramp-enable-foo-method’ with ‘progn’ for the ‘;;;###autoload’ cookie.
 
 
-File: docPvchp2.info,  Node: Traces and Profiles,  Next: GNU Free Documentation License,  Prev: Files directories and localnames,  Up: Top
+File: doc3fYIZF.info,  Node: Traces and Profiles,  Next: GNU Free Documentation License,  Prev: Files directories and localnames,  Up: Top
 
 9 How to Customize Traces
 *************************
@@ -4960,7 +4989,7 @@ strings), and the entry and exit messages for the function
 analyzing the remote commands for performance analysis.
 
 
-File: docPvchp2.info,  Node: GNU Free Documentation License,  Next: Function Index,  Prev: Traces and Profiles,  Up: Top
+File: doc3fYIZF.info,  Node: GNU Free Documentation License,  Next: Function Index,  Prev: Traces and Profiles,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -5442,7 +5471,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docPvchp2.info,  Node: Function Index,  Next: Variable Index,  Prev: GNU Free Documentation License,  Up: Top
+File: doc3fYIZF.info,  Node: Function Index,  Next: Variable Index,  Prev: GNU Free Documentation License,  Up: Top
 
 Function Index
 **************
@@ -5451,9 +5480,9 @@ Function Index
 * Menu:
 
 * file-remote-p:                         Frequently Asked Questions.
-                                                              (line 608)
+                                                              (line 623)
 * inhibit-remote-files:                  Frequently Asked Questions.
-                                                              (line 765)
+                                                              (line 780)
 * list-system-processes:                 Remote processes.    (line 365)
 * make-process:                          Remote processes.    (line 426)
 * my-tramp-parse:                        Customizing Completion.
@@ -5503,17 +5532,17 @@ Function Index
                                                               (line  11)
 * tramp-rename-these-files:              Renaming remote files.
                                                               (line  43)
-* tramp-revert-buffer-with-sudo:         Ad-hoc multi-hops.   (line  65)
+* tramp-revert-buffer-with-sudo:         Ad-hoc multi-hops.   (line  78)
 * tramp-set-completion-function:         Customizing Completion.
                                                               (line  25)
 * tramp-set-completion-function <1>:     Ssh setup.           (line  13)
 * tramp-unload-tramp:                    Frequently Asked Questions.
-                                                              (line 780)
+                                                              (line 795)
 * without-remote-files:                  Frequently Asked Questions.
-                                                              (line 771)
+                                                              (line 786)
 
 
-File: docPvchp2.info,  Node: Variable Index,  Next: Concept Index,  Prev: Function Index,  Up: Top
+File: doc3fYIZF.info,  Node: Variable Index,  Next: Concept Index,  Prev: Function Index,  Up: Top
 
 Variable Index
 **************
@@ -5538,16 +5567,16 @@ Variable Index
 * ControlPersist, ssh option:            Ssh setup.           (line  54)
 * customize-package-emacs-version-alist: Obtaining TRAMP.     (line  20)
 * debug-ignored-errors:                  Frequently Asked Questions.
-                                                              (line 660)
+                                                              (line 675)
 * default-directory:                     Frequently Asked Questions.
-                                                              (line 608)
+                                                              (line 623)
 * dired-actual-switches:                 Frequently Asked Questions.
                                                               (line 328)
 * dired-listing-switches:                Frequently Asked Questions.
                                                               (line 316)
 * DISPLAY, environment variable:         Remote processes.    (line 108)
 * EDITOR, environment variable:          Frequently Asked Questions.
-                                                              (line 601)
+                                                              (line 616)
 * enable-remote-dir-locals:              Configuration.       (line  28)
 * ENV, environment variable:             Remote processes.    (line  79)
 * ESHELL, environment variable:          Remote shell setup.  (line 209)
@@ -5567,7 +5596,7 @@ Variable Index
                                                               (line  79)
 * non-essential:                         External packages.   (line  13)
 * password-word-equivalents:             Remote shell setup.  (line  95)
-* PATH, environment variable:            External methods.    (line 198)
+* PATH, environment variable:            External methods.    (line 199)
 * proced-show-remote-processes:          Remote processes.    (line 418)
 * process-connection-type:               Remote processes.    (line 320)
 * process-file-return-signal-string:     Remote processes.    (line  21)
@@ -5576,7 +5605,7 @@ Variable Index
 * ProxyCommand, ssh option <1>:          Ssh setup.           (line  90)
 * ProxyJump, ssh option:                 Ssh setup.           (line  90)
 * remote-file-error:                     Frequently Asked Questions.
-                                                              (line 660)
+                                                              (line 675)
 * remote-file-error <1>:                 External packages.   (line  57)
 * remote-file-name-access-timeout:       Frequently Asked Questions.
                                                               (line 208)
@@ -5602,18 +5631,18 @@ Variable Index
 * shell-history-file-name:               Remote processes.    (line 164)
 * SHELLNAME, environment variable:       Remote shell setup.  (line 209)
 * small-temporary-file-directory:        Frequently Asked Questions.
-                                                              (line 690)
+                                                              (line 705)
 * SSH_AUTH_SOCK, environment variable:   Ssh setup.           (line 185)
 * temporary-file-directory:              Temporary directory. (line   6)
 * TERM, environment variable:            Remote shell setup.  (line 107)
 * TERM, environment variable <1>:        Remote shell setup.  (line 121)
 * tramp-actions-before-shell:            Remote shell setup.  (line 152)
-* tramp-adb-connect-if-not-connected:    External methods.    (line 206)
+* tramp-adb-connect-if-not-connected:    External methods.    (line 207)
 * tramp-adb-connection-local-default-ps-profile: Remote processes.
                                                               (line 401)
 * tramp-adb-connection-local-default-ps-variables: Remote processes.
                                                               (line 401)
-* tramp-adb-program:                     External methods.    (line 198)
+* tramp-adb-program:                     External methods.    (line 199)
 * tramp-allow-unsafe-temporary-files:    Auto-save File Lock and Backup.
                                                               (line  92)
 * tramp-archive-all-gvfs-methods:        Archive file names.  (line  97)
@@ -5625,15 +5654,15 @@ Variable Index
 * tramp-backup-directory-alist:          Auto-save File Lock and Backup.
                                                               (line  37)
 * tramp-cleanup-all-connections-hook:    Frequently Asked Questions.
-                                                              (line 638)
+                                                              (line 653)
 * tramp-cleanup-connection-hook:         Frequently Asked Questions.
-                                                              (line 638)
+                                                              (line 653)
 * tramp-cleanup-some-buffers-hook:       Cleanup remote connections.
                                                               (line  44)
 * tramp-compat-temporary-file-directory: Temporary directory. (line  10)
 * tramp-completion-function-alist:       Customizing Completion.
                                                               (line   6)
-* tramp-completion-multi-hop-methods:    Ad-hoc multi-hops.   (line  52)
+* tramp-completion-multi-hop-methods:    Ad-hoc multi-hops.   (line  65)
 * tramp-completion-use-auth-sources:     File name completion.
                                                               (line  34)
 * tramp-completion-use-cache:            File name completion.
@@ -5670,7 +5699,7 @@ Variable Index
 * tramp-encoding-shell:                  Remote shell setup.  (line  32)
 * tramp-file-name-regexp:                Change file name syntax.
                                                               (line  28)
-* tramp-file-name-with-method:           Ad-hoc multi-hops.   (line  69)
+* tramp-file-name-with-method:           Ad-hoc multi-hops.   (line  82)
 * tramp-fuse-unmount-on-cleanup:         FUSE setup.          (line  20)
 * tramp-gvfs-enabled:                    GVFS-based methods.  (line  14)
 * tramp-gvfs-methods:                    GVFS-based methods.  (line  82)
@@ -5680,11 +5709,11 @@ Variable Index
                                                               (line 302)
 * tramp-histfile-override:               Remote processes.    (line 129)
 * tramp-ignored-file-name-regexp:        Frequently Asked Questions.
-                                                              (line 755)
+                                                              (line 770)
 * tramp-inhibit-errors-if-setting-file-attributes-fail: Frequently Asked Questions.
-                                                              (line 710)
+                                                              (line 725)
 * tramp-inhibit-errors-if-setting-file-attributes-fail <1>: Frequently Asked Questions.
-                                                              (line 718)
+                                                              (line 733)
 * tramp-inline-compress-commands:        Inline methods.      (line  25)
 * tramp-inline-compress-start-size:      Inline methods.      (line  25)
 * tramp-kubernetes-context:              Kubernetes setup.    (line  17)
@@ -5704,7 +5733,7 @@ Variable Index
 * tramp-remote-path:                     Remote programs.     (line  15)
 * tramp-remote-process-environment:      Remote processes.    (line  53)
 * tramp-restricted-shell-hosts-alist:    Multi-hops.          (line  84)
-* tramp-save-ad-hoc-proxies:             Ad-hoc multi-hops.   (line  36)
+* tramp-save-ad-hoc-proxies:             Ad-hoc multi-hops.   (line  42)
 * tramp-sh-extra-args:                   Remote shell setup.  (line  22)
 * tramp-shell-prompt-pattern:            Remote shell setup.  (line  64)
 * tramp-show-ad-hoc-proxies:             Ad-hoc multi-hops.   (line  26)
@@ -5730,10 +5759,10 @@ Variable Index
 * XDG_DATA_HOME, environment variable:   Frequently Asked Questions.
                                                               (line 376)
 * XDG_RUNTIME_DIR, environment variable: Frequently Asked Questions.
-                                                              (line 704)
+                                                              (line 719)
 
 
-File: docPvchp2.info,  Node: Concept Index,  Prev: Variable Index,  Up: Top
+File: doc3fYIZF.info,  Node: Concept Index,  Prev: Variable Index,  Up: Top
 
 Concept Index
 *************
@@ -5745,13 +5774,13 @@ Concept Index
 * .profile file:                         Remote shell setup.  (line  46)
 * 7z file archive suffix:                Archive file names.  (line  35)
 * adb method:                            Quick Start Guide.   (line 138)
-* adb method <1>:                        External methods.    (line 196)
+* adb method <1>:                        External methods.    (line 197)
 * afp method:                            Quick Start Guide.   (line  99)
 * afp method <1>:                        GVFS-based methods.  (line  17)
 * alternative file name syntax:          Change file name syntax.
                                                               (line   6)
 * android:                               Quick Start Guide.   (line 138)
-* android (with adb method):             External methods.    (line 196)
+* android (with adb method):             External methods.    (line 197)
 * android shell setup for ssh:           Android shell setup. (line   6)
 * androidsu method:                      Quick Start Guide.   (line  55)
 * androidsu method <1>:                  Inline methods.      (line  61)
@@ -5807,7 +5836,7 @@ Concept Index
 * doas method <1>:                       Quick Start Guide.   (line  72)
 * doas method <2>:                       Inline methods.      (line  83)
 * docker method:                         Inline methods.      (line 160)
-* dockercp method:                       External methods.    (line  75)
+* dockercp method:                       External methods.    (line  76)
 * encfs:                                 Keeping files encrypted.
                                                               (line  19)
 * encfsctl:                              Keeping files encrypted.
@@ -5821,7 +5850,7 @@ Concept Index
 * fakecygpty and cygwin:                 Ssh setup.           (line 173)
 * FAQ:                                   Frequently Asked Questions.
                                                               (line   6)
-* fcp method:                            External methods.    (line  84)
+* fcp method:                            External methods.    (line  85)
 * file archive suffix 7z:                Archive file names.  (line  35)
 * file archive suffix apk:               Archive file names.  (line  37)
 * file archive suffix ar:                Archive file names.  (line  39)
@@ -5873,9 +5902,9 @@ Concept Index
 * flatpak method:                        Inline methods.      (line 193)
 * frequently asked questions:            Frequently Asked Questions.
                                                               (line   6)
-* fsh (with fcp method):                 External methods.    (line  84)
-* fsh method:                            External methods.    (line  95)
-* ftp method:                            External methods.    (line 130)
+* fsh (with fcp method):                 External methods.    (line  85)
+* fsh method:                            External methods.    (line  96)
+* ftp method:                            External methods.    (line 131)
 * fuse-based methods:                    Quick Start Guide.   (line 120)
 * fuse-based methods <1>:                FUSE-based methods.  (line   6)
 * gdb:                                   Remote processes.    (line 267)
@@ -5908,7 +5937,7 @@ Concept Index
 * LZH file archive suffix:               Archive file names.  (line  59)
 * media:                                 GVFS-based methods.  (line  48)
 * method adb:                            Quick Start Guide.   (line 138)
-* method adb <1>:                        External methods.    (line 196)
+* method adb <1>:                        External methods.    (line 197)
 * method afp:                            Quick Start Guide.   (line  99)
 * method afp <1>:                        GVFS-based methods.  (line  17)
 * method androidsu:                      Quick Start Guide.   (line  55)
@@ -5924,11 +5953,11 @@ Concept Index
 * method doas <1>:                       Quick Start Guide.   (line  72)
 * method doas <2>:                       Inline methods.      (line  83)
 * method docker:                         Inline methods.      (line 160)
-* method dockercp:                       External methods.    (line  75)
-* method fcp:                            External methods.    (line  84)
+* method dockercp:                       External methods.    (line  76)
+* method fcp:                            External methods.    (line  85)
 * method flatpak:                        Inline methods.      (line 193)
-* method fsh:                            External methods.    (line  95)
-* method ftp:                            External methods.    (line 130)
+* method fsh:                            External methods.    (line  96)
+* method ftp:                            External methods.    (line 131)
 * method gdrive:                         Quick Start Guide.   (line 109)
 * method gdrive <1>:                     GVFS-based methods.  (line  35)
 * method git:                            Customizing Methods. (line  29)
@@ -5941,7 +5970,7 @@ Concept Index
 * method lxd:                            Customizing Methods. (line  24)
 * method mtp:                            Quick Start Guide.   (line  99)
 * method mtp <1>:                        GVFS-based methods.  (line  48)
-* method nc:                             External methods.    (line 101)
+* method nc:                             External methods.    (line 102)
 * method nextcloud:                      Quick Start Guide.   (line 109)
 * method nextcloud <1>:                  GVFS-based methods.  (line  65)
 * method nspawn:                         Inline methods.      (line 210)
@@ -5950,9 +5979,9 @@ Concept Index
 * method plink <2>:                      Inline methods.      (line 135)
 * method plinkx:                         Inline methods.      (line 147)
 * method podman:                         Inline methods.      (line 165)
-* method podmancp:                       External methods.    (line  76)
-* method pscp:                           External methods.    (line  60)
-* method psftp:                          External methods.    (line  61)
+* method podmancp:                       External methods.    (line  77)
+* method pscp:                           External methods.    (line  61)
+* method psftp:                          External methods.    (line  62)
 * method rclone:                         Quick Start Guide.   (line 120)
 * method rclone <1>:                     FUSE-based methods.  (line  13)
 * method rcp:                            External methods.    (line  16)
@@ -5962,14 +5991,14 @@ Concept Index
 * method run0 <1>:                       Quick Start Guide.   (line  72)
 * method run0 <2>:                       Inline methods.      (line  89)
 * method scp:                            External methods.    (line  24)
-* method scpx:                           External methods.    (line  47)
+* method scpx:                           External methods.    (line  48)
 * method scpx with cygwin:               Ssh setup.           (line 177)
 * method sftp:                           Quick Start Guide.   (line  99)
 * method sftp <1>:                       GVFS-based methods.  (line  73)
 * method sg:                             Quick Start Guide.   (line  55)
 * method sg <1>:                         Inline methods.      (line  96)
 * method smb:                            Quick Start Guide.   (line  91)
-* method smb <1>:                        External methods.    (line 136)
+* method smb <1>:                        External methods.    (line 137)
 * method ssh:                            Quick Start Guide.   (line  43)
 * method ssh <1>:                        Quick Start Guide.   (line  72)
 * method ssh <2>:                        Inline methods.      (line  39)
@@ -5984,7 +6013,7 @@ Concept Index
 * method sudo <1>:                       Quick Start Guide.   (line  72)
 * method sudo <2>:                       Inline methods.      (line  74)
 * method sudoedit:                       Quick Start Guide.   (line  82)
-* method sudoedit <1>:                   External methods.    (line 110)
+* method sudoedit <1>:                   External methods.    (line 111)
 * method telnet:                         Inline methods.      (line  49)
 * method toolbox:                        Inline methods.      (line 178)
 * method vagrant:                        Customizing Methods. (line  40)
@@ -5995,7 +6024,7 @@ Concept Index
 * methods, gvfs <1>:                     GVFS-based methods.  (line   6)
 * methods, inline:                       Inline methods.      (line   6)
 * ms windows (with smb method):          Quick Start Guide.   (line  91)
-* ms windows (with smb method) <1>:      External methods.    (line 136)
+* ms windows (with smb method) <1>:      External methods.    (line 137)
 * ms windows and ssh:                    Ssh setup.           (line 160)
 * ms windows and ssh-agent:              Ssh setup.           (line 160)
 * ms Windows, issues:                    Ssh setup.           (line 158)
@@ -6006,7 +6035,7 @@ Concept Index
 * mtree file archive suffix:             Archive file names.  (line  63)
 * multi-hop:                             Multi-hops.          (line   6)
 * multi-hop, ad-hoc:                     Ad-hoc multi-hops.   (line   6)
-* nc method:                             External methods.    (line 101)
+* nc method:                             External methods.    (line 102)
 * nc unix command:                       Remote shell setup.  (line 233)
 * nextcloud:                             Quick Start Guide.   (line 109)
 * nextcloud <1>:                         GVFS-based methods.  (line  65)
@@ -6025,23 +6054,23 @@ Concept Index
 * passwords:                             Password handling.   (line   6)
 * pax file archive suffix:               Archive file names.  (line  68)
 * perldb:                                Remote processes.    (line 267)
-* plink (with pscp method):              External methods.    (line  60)
-* plink (with psftp method):             External methods.    (line  61)
+* plink (with pscp method):              External methods.    (line  61)
+* plink (with psftp method):             External methods.    (line  62)
 * plink method:                          Quick Start Guide.   (line  43)
 * plink method <1>:                      Quick Start Guide.   (line  72)
 * plink method <2>:                      Inline methods.      (line 135)
 * plinkx method:                         Inline methods.      (line 147)
 * podman method:                         Inline methods.      (line 165)
-* podmancp method:                       External methods.    (line  76)
+* podmancp method:                       External methods.    (line  77)
 * powershell:                            Remote processes.    (line 298)
 * proced:                                Remote processes.    (line 418)
 * proxy hosts:                           Multi-hops.          (line   6)
 * proxy hosts, ad-hoc:                   Ad-hoc multi-hops.   (line   6)
 * proxy hosts, http tunnel:              Firewalls.           (line   6)
-* pscp method:                           External methods.    (line  60)
-* psftp method:                          External methods.    (line  61)
-* putty (with pscp method):              External methods.    (line  60)
-* putty (with psftp method):             External methods.    (line  61)
+* pscp method:                           External methods.    (line  61)
+* psftp method:                          External methods.    (line  62)
+* putty (with pscp method):              External methods.    (line  61)
+* putty (with psftp method):             External methods.    (line  62)
 * quick start guide:                     Quick Start Guide.   (line   6)
 * rar file archive suffix:               Archive file names.  (line  70)
 * rclone method:                         Quick Start Guide.   (line 120)
@@ -6060,7 +6089,7 @@ Concept Index
 * save remote files:                     Renaming remote files.
                                                               (line   6)
 * scp method:                            External methods.    (line  24)
-* scpx method:                           External methods.    (line  47)
+* scpx method:                           External methods.    (line  48)
 * scpx method with cygwin:               Ssh setup.           (line 177)
 * selecting config files:                Customizing Completion.
                                                               (line   6)
@@ -6078,12 +6107,12 @@ Concept Index
 * simplified syntax:                     Change file name syntax.
                                                               (line  14)
 * smb method:                            Quick Start Guide.   (line  91)
-* smb method <1>:                        External methods.    (line 136)
+* smb method <1>:                        External methods.    (line 137)
 * smbclient:                             Quick Start Guide.   (line  91)
-* smbclient <1>:                         External methods.    (line 136)
+* smbclient <1>:                         External methods.    (line 137)
 * ssh (with rsync method):               External methods.    (line  36)
 * ssh (with scp method):                 External methods.    (line  24)
-* ssh (with scpx method):                External methods.    (line  47)
+* ssh (with scpx method):                External methods.    (line  48)
 * ssh method:                            Quick Start Guide.   (line  43)
 * ssh method <1>:                        Quick Start Guide.   (line  72)
 * ssh method <2>:                        Inline methods.      (line  39)
@@ -6100,10 +6129,10 @@ Concept Index
 * sudo method <1>:                       Quick Start Guide.   (line  72)
 * sudo method <2>:                       Inline methods.      (line  74)
 * sudoedit method:                       Quick Start Guide.   (line  82)
-* sudoedit method <1>:                   External methods.    (line 110)
+* sudoedit method <1>:                   External methods.    (line 111)
 * tar file archive suffix:               Archive file names.  (line  76)
 * tbz file archive suffix:               Archive file names.  (line  76)
-* telnet (with nc method):               External methods.    (line 101)
+* telnet (with nc method):               External methods.    (line 102)
 * telnet method:                         Inline methods.      (line  49)
 * tgz file archive suffix:               Archive file names.  (line  76)
 * tlz file archive suffix:               Archive file names.  (line  76)
@@ -6153,61 +6182,63 @@ Node: Optional methods23667
 Node: Connection types24569
 Node: Inline methods26015
 Node: External methods33987
-Node: GVFS-based methods43534
-Node: FUSE-based methods47784
-Node: Default Method50421
-Ref: Default Method-Footnote-153644
-Node: Default User53754
-Node: Default Host55287
-Node: Multi-hops56564
-Node: Firewalls60763
-Node: Customizing Methods62239
-Node: Customizing Completion64255
-Node: Password handling67749
-Ref: Using an authentication file68223
-Ref: Caching passwords70624
-Ref: Password handling-Footnote-171559
-Ref: Password handling-Footnote-271630
-Node: Connection caching71680
-Node: Predefined connection information72614
-Node: Remote programs77386
-Node: Remote shell setup80301
-Node: Ssh setup91040
-Ref: Using ssh connection sharing93001
-Node: FUSE setup99380
-Ref: Setup of rclone method100368
-Ref: Setup of sshfs method100950
-Ref: FUSE setup-Footnote-1101444
-Node: Android shell setup101480
-Node: Kubernetes setup104784
-Node: Auto-save File Lock and Backup105774
-Node: Keeping files encrypted110252
-Node: Usage114899
-Node: File name syntax116325
-Node: Change file name syntax118337
-Node: File name completion119771
-Node: Ad-hoc multi-hops122466
-Node: Home directories126182
-Node: Remote processes127915
-Ref: Managing remote shell history133948
-Ref: Running a debugger on a remote host139565
-Ref: Improving performance of asynchronous remote processes146517
-Node: Cleanup remote connections150186
-Node: Renaming remote files152535
-Node: Archive file names156856
-Node: Bug Reports161606
-Node: Frequently Asked Questions165561
-Ref: Frequently Asked Questions-Footnote-1196924
-Node: Files directories and localnames196989
-Node: Temporary directory197554
-Node: Localname deconstruction198658
-Node: External packages199343
-Node: Extension packages202386
-Node: Traces and Profiles206609
-Node: GNU Free Documentation License209078
-Node: Function Index234455
-Node: Variable Index238909
-Node: Concept Index254234
+Node: GVFS-based methods43571
+Node: FUSE-based methods47821
+Node: Default Method50458
+Ref: Default Method-Footnote-153681
+Node: Default User53791
+Node: Default Host55324
+Node: Multi-hops56601
+Node: Firewalls60800
+Node: Customizing Methods62276
+Node: Customizing Completion64292
+Node: Password handling67786
+Ref: Using an authentication file68260
+Ref: Caching passwords70661
+Ref: Password handling-Footnote-171596
+Ref: Password handling-Footnote-271667
+Node: Connection caching71717
+Node: Predefined connection information72651
+Node: Remote programs77423
+Node: Remote shell setup80338
+Node: Ssh setup91077
+Ref: Using ssh connection sharing93038
+Node: FUSE setup99417
+Ref: Setup of rclone method100405
+Ref: Setup of sshfs method100987
+Ref: FUSE setup-Footnote-1101481
+Node: Android shell setup101517
+Node: Kubernetes setup104821
+Node: Auto-save File Lock and Backup105811
+Node: Keeping files encrypted110289
+Node: Usage114936
+Node: File name syntax116362
+Node: Change file name syntax118374
+Node: File name completion119808
+Node: Ad-hoc multi-hops122503
+Ref: tramp-show-ad-hoc-proxies123638
+Ref: tramp-save-ad-hoc-proxies124329
+Node: Home directories126850
+Node: Remote processes128583
+Ref: Managing remote shell history134616
+Ref: Running a debugger on a remote host140233
+Ref: Improving performance of asynchronous remote processes147185
+Node: Cleanup remote connections150854
+Node: Renaming remote files153203
+Node: Archive file names157524
+Node: Bug Reports162274
+Node: Frequently Asked Questions166229
+Ref: Frequently Asked Questions-Footnote-1198358
+Node: Files directories and localnames198423
+Node: Temporary directory198988
+Node: Localname deconstruction200092
+Node: External packages200777
+Node: Extension packages203820
+Node: Traces and Profiles208043
+Node: GNU Free Documentation License210512
+Node: Function Index235889
+Node: Variable Index240343
+Node: Concept Index255668
 
 End Tag Table
 

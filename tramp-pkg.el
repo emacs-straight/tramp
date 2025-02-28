@@ -1,2 +1,2 @@
-;; Generated package description from tramp.el  -*- no-byte-compile: t -*-
-(define-package "tramp" "2.7.2.1.0.20250130.82356" "Transparent Remote Access, Multiple Protocol" '((emacs "27.1")) :commit "8e038b0dc1fc16acf26c1c4b549a7be3c86e8a45" :authors '(("Kai Großjohann" . "kai.grossjohann@gmx.net")) :maintainer '("Michael Albinus" . "michael.albinus@gmx.de") :keywords '("comm" "processes") :url "https://www.gnu.org/software/tramp/")
+;; Generated package description from tramp.el  -*- mode: lisp-data; no-byte-compile: t -*-
+(define-package "tramp" "2.7.2.2.0.20250227.73653" "Transparent Remote Access, Multiple Protocol" '((emacs "27.1")) :commit "03ee1a30d526613dbfd970ddbc2ca6c657e8d865" :authors '(("Kai Großjohann" . "kai.grossjohann@gmx.net")) :maintainer '("Michael Albinus" . "michael.albinus@gmx.de") :keywords '("comm" "processes") :url "https://www.gnu.org/software/tramp/")
