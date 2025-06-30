@@ -417,6 +417,12 @@ whether HANDLER is to be called.  Add operations defined in
 
 \(fn FUNC HANDLER &optional APPEND)" nil nil)
 
+(autoload 'tramp-active-command-completion-p "tramp" "\
+A predicate for Tramp interactive commands.
+They are completed by `M-x TAB' only if there's an active connection or buffer.
+
+\(fn SYMBOL BUFFER)" nil nil)
+
 (defvar tramp-completion-multi-hop-methods nil "\
 Methods for which to provide completions over multi-hop connections.")
 
@@ -571,6 +577,14 @@ Virtual connection vector for Tramp version.")
 
 (defconst tramp-cache-undefined 'undef "\
 The symbol marking undefined hash keys and values.")
+
+(autoload 'tramp-get-hash-table "tramp-cache" "\
+Return the hash table for KEY.
+If it doesn't exist yet, it is created and initialized with
+matching entries of `tramp-connection-properties'.
+If KEY is `tramp-cache-undefined', don't create anything, and return nil.
+
+\(fn KEY)" nil nil)
 
 (autoload 'tramp-get-file-property "tramp-cache" "\
 Get the PROPERTY of FILE from the cache context of KEY.
@@ -740,11 +754,23 @@ SYNTAX can be one of the symbols `default' (default),
 
 \(fn &optional SYNTAX)" t nil)
 
+(autoload 'tramp-enable-method "tramp-cmds" "\
+Enable optional METHOD if possible.
+
+\(fn METHOD)" t nil)
+
 (autoload 'tramp-list-tramp-buffers "tramp-cmds" "\
 Return a list of all Tramp connection buffers." nil nil)
 
 (autoload 'tramp-list-remote-buffers "tramp-cmds" "\
-Return a list of all buffers with remote `default-directory'." nil nil)
+Return a list of remote buffers, excluding internal Tramp buffers.
+A buffer is considered remote if either its `default-directory' or
+`buffer-file-name' is a remote file name." nil nil)
+
+(autoload 'tramp-list-remote-buffer-connections "tramp-cmds" "\
+Return a list of all remote buffer connections.
+A buffer is considered remote if either its `default-directory' or
+`buffer-file-name' is a remote file name." nil nil)
 
 (defvar tramp-cleanup-connection-hook nil "\
 List of functions to be called after Tramp connection is cleaned up.
@@ -752,18 +778,20 @@ Each function is called with the current vector as argument.")
 
 (autoload 'tramp-cleanup-connection "tramp-cmds" "\
 Flush all connection related objects.
-This includes password cache, file cache, connection cache,
-buffers, processes.  KEEP-DEBUG non-nil preserves the debug
-buffer.  KEEP-PASSWORD non-nil preserves the password cache.
-KEEP-PROCESSES non-nil preserves the asynchronous processes.
-When called interactively, a Tramp connection has to be selected.
+This includes password cache, file cache, connection cache, buffers,
+processes.  KEEP-DEBUG non-nil preserves the debug and trace buffer.
+KEEP-PASSWORD non-nil preserves the password cache.  KEEP-PROCESSES
+non-nil preserves the asynchronous processes.  When called
+interactively, a Tramp connection has to be selected.
 
 \(fn VEC &optional KEEP-DEBUG KEEP-PASSWORD KEEP-PROCESSES)" t nil)
+
+(function-put 'tramp-cleanup-connection 'completion-predicate #'tramp-active-command-completion-p)
 
 (autoload 'tramp-cleanup-this-connection "tramp-cmds" "\
 Flush all connection related objects of the current buffer's connection." t nil)
 
-(function-put #'tramp-cleanup-this-connection 'completion-predicate #'tramp-command-completion-p)
+(function-put 'tramp-cleanup-this-connection 'completion-predicate #'tramp-command-completion-p)
 
 (defvar tramp-cleanup-all-connections-hook nil "\
 List of functions to be called after all Tramp connections are cleaned up.")
@@ -771,6 +799,8 @@ List of functions to be called after all Tramp connections are cleaned up.")
 (autoload 'tramp-cleanup-all-connections "tramp-cmds" "\
 Flush all Tramp internal objects.
 This includes password cache, file cache, connection cache, buffers." t nil)
+
+(function-put 'tramp-cleanup-all-connections 'completion-predicate #'tramp-active-command-completion-p)
 
 (autoload 'tramp-taint-remote-process-buffer "tramp-cmds" "\
 Mark buffer as related to remote processes.
@@ -783,8 +813,19 @@ A buffer is killed when it has a remote `default-directory', and
 one of the functions in `tramp-cleanup-some-buffers-hook' returns
 non-nil." t nil)
 
+(function-put 'tramp-cleanup-some-buffers 'completion-predicate #'tramp-active-command-completion-p)
+
 (autoload 'tramp-cleanup-all-buffers "tramp-cmds" "\
 Kill all remote buffers." t nil)
+
+(function-put 'tramp-cleanup-all-buffers 'completion-predicate #'tramp-active-command-completion-p)
+
+(autoload 'tramp-cleanup-bufferless-connections "tramp-cmds" "\
+Flush connection-related objects for which no buffer exists.
+A bufferless connection is one for which no live buffer's
+`buffer-file-name' or `default-directory' is associated with that
+connection, except for Tramp internal buffers.
+Display a message of cleaned-up connections." t nil)
 
 (autoload 'tramp-rename-files "tramp-cmds" "\
 Replace in all buffers the visiting file name from SOURCE to TARGET.
@@ -821,6 +862,8 @@ The remote connection identified by SOURCE is flushed by
 
 \(fn SOURCE TARGET)" t nil)
 
+(function-put 'tramp-rename-files 'completion-predicate #'tramp-active-command-completion-p)
+
 (autoload 'tramp-rename-these-files "tramp-cmds" "\
 Replace visiting file names to TARGET.
 The current buffer must be related to a remote connection.  In
@@ -834,13 +877,7 @@ For details, see `tramp-rename-files'.
 
 \(fn TARGET)" t nil)
 
-(function-put #'tramp-rename-these-files 'completion-predicate #'tramp-command-completion-p)
-
-(autoload 'tramp-revert-buffer-with-sudo "tramp-cmds" "\
-Revert current buffer to visit with \"sudo\" permissions.
-An alternative method could be chosen with `tramp-file-name-with-method'.
-If the buffer visits a file, the file is replaced.
-If the buffer runs `dired', the buffer is reverted." t nil)
+(function-put 'tramp-rename-these-files 'completion-predicate #'tramp-command-completion-p)
 
 (autoload 'tramp-recompile-elpa-command-completion-p "tramp-cmds" "\
 A predicate for `tramp-recompile-elpa'.
@@ -853,7 +890,7 @@ Tramp is an installed ELPA package.
 Recompile the installed Tramp ELPA package.
 This is needed if there are compatibility problems." t nil)
 
-(function-put #'tramp-recompile-elpa 'completion-predicate #'tramp-recompile-elpa-command-completion-p)
+(function-put 'tramp-recompile-elpa 'completion-predicate #'tramp-recompile-elpa-command-completion-p)
 
 (autoload 'tramp-version "tramp-cmds" "\
 Print version number of tramp.el in echo area or current buffer.
@@ -973,6 +1010,12 @@ Extract the pod name from a kubernetes host name in VEC.
 
 \(fn VEC)" nil nil)
 
+(autoload 'tramp-kubernetes--namespace "tramp-container" "\
+Extract the namespace from a kubernetes host name in VEC.
+Use `tramp-kubernetes-namespace' otherwise.
+
+\(fn VEC)" nil nil)
+
 (autoload 'tramp-kubernetes--context-namespace "tramp-container" "\
 The kubectl options for context and namespace as string.
 
@@ -1014,7 +1057,7 @@ see its function help for a description of the format.
 
 (defvar tramp-default-remote-shell)
 
-(tramp--with-startup (add-to-list 'tramp-methods `(,tramp-docker-method (tramp-login-program ,tramp-docker-program) (tramp-login-args (("exec") ("-it") ("-u" "%u") ("%h") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")))) (add-to-list 'tramp-methods `(,tramp-dockercp-method (tramp-login-program ,tramp-docker-program) (tramp-login-args (("exec") ("-it") ("-u" "%u") ("%h") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")) (tramp-copy-program ,tramp-docker-program) (tramp-copy-args (("cp"))) (tramp-copy-file-name (("%h" ":") ("%f"))) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `(,tramp-podman-method (tramp-login-program ,tramp-podman-program) (tramp-login-args (("exec") ("-it") ("-u" "%u") ("%h") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")))) (add-to-list 'tramp-methods `(,tramp-podmancp-method (tramp-login-program ,tramp-podman-program) (tramp-login-args (("exec") ("-it") ("-u" "%u") ("%h") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")) (tramp-copy-program ,tramp-podman-program) (tramp-copy-args (("cp"))) (tramp-copy-file-name (("%h" ":") ("%f"))) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `(,tramp-kubernetes-method (tramp-login-program ,tramp-kubernetes-program) (tramp-login-args (("%x") ("exec") ("-c" "%a") ("%h") ("-it") ("--") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")))) (add-to-list 'tramp-completion-multi-hop-methods tramp-docker-method) (add-to-list 'tramp-completion-multi-hop-methods tramp-podman-method) (add-to-list 'tramp-completion-multi-hop-methods tramp-kubernetes-method) (tramp-set-completion-function tramp-docker-method `((tramp-container--completion-function ,tramp-docker-method))) (tramp-set-completion-function tramp-dockercp-method `((tramp-container--completion-function ,tramp-dockercp-method))) (tramp-set-completion-function tramp-podman-method `((tramp-container--completion-function ,tramp-podman-method))) (tramp-set-completion-function tramp-podmancp-method `((tramp-container--completion-function ,tramp-podmancp-method))) (tramp-set-completion-function tramp-kubernetes-method `((tramp-kubernetes--completion-function ,tramp-kubernetes-method))) (defconst tramp-kubernetes-connection-local-default-variables '((tramp-config-check . tramp-kubernetes--current-context-data) (tramp-extra-expand-args 97 (tramp-kubernetes--container (car tramp-current-connection)) 104 (tramp-kubernetes--pod (car tramp-current-connection)) 120 (tramp-kubernetes--context-namespace (car tramp-current-connection)))) "Default connection-local variables for remote kubernetes connections.") (connection-local-set-profile-variables 'tramp-kubernetes-connection-local-default-profile tramp-kubernetes-connection-local-default-variables) (connection-local-set-profiles `(:application tramp :protocol ,tramp-kubernetes-method) 'tramp-kubernetes-connection-local-default-profile))
+(tramp--with-startup (add-to-list 'tramp-methods `(,tramp-docker-method (tramp-login-program ,tramp-docker-program) (tramp-login-args (("exec") ("-it") ("-u" "%u") ("-e" ,(format "TERM=%s" tramp-terminal-type)) ("%h") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")) (tramp-completion-use-cache nil))) (add-to-list 'tramp-methods `(,tramp-dockercp-method (tramp-login-program ,tramp-docker-program) (tramp-login-args (("exec") ("-it") ("-u" "%u") ("-e" ,(format "TERM=%s" tramp-terminal-type)) ("%h") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")) (tramp-copy-program ,tramp-docker-program) (tramp-copy-args (("cp"))) (tramp-copy-file-name (("%h" ":") ("%f"))) (tramp-copy-recursive t) (tramp-completion-use-cache nil))) (add-to-list 'tramp-methods `(,tramp-podman-method (tramp-login-program ,tramp-podman-program) (tramp-login-args (("exec") ("-it") ("-u" "%u") ("-e" ,(format "TERM=%s" tramp-terminal-type)) ("%h") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")) (tramp-completion-use-cache nil))) (add-to-list 'tramp-methods `(,tramp-podmancp-method (tramp-login-program ,tramp-podman-program) (tramp-login-args (("exec") ("-it") ("-u" "%u") ("-e" ,(format "TERM=%s" tramp-terminal-type)) ("%h") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")) (tramp-copy-program ,tramp-podman-program) (tramp-copy-args (("cp"))) (tramp-copy-file-name (("%h" ":") ("%f"))) (tramp-copy-recursive t) (tramp-completion-use-cache nil))) (add-to-list 'tramp-methods `(,tramp-kubernetes-method (tramp-login-program ,tramp-kubernetes-program) (tramp-login-args (("%x") ("exec") ("-c" "%a") ("%h") ("-it") ("--") ("%l"))) (tramp-direct-async (,tramp-default-remote-shell "-c")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-i" "-c")) (tramp-completion-use-cache nil))) (add-to-list 'tramp-completion-multi-hop-methods tramp-docker-method) (add-to-list 'tramp-completion-multi-hop-methods tramp-podman-method) (add-to-list 'tramp-completion-multi-hop-methods tramp-kubernetes-method) (tramp-set-completion-function tramp-docker-method `((tramp-container--completion-function ,tramp-docker-method))) (tramp-set-completion-function tramp-dockercp-method `((tramp-container--completion-function ,tramp-dockercp-method))) (tramp-set-completion-function tramp-podman-method `((tramp-container--completion-function ,tramp-podman-method))) (tramp-set-completion-function tramp-podmancp-method `((tramp-container--completion-function ,tramp-podmancp-method))) (tramp-set-completion-function tramp-kubernetes-method `((tramp-kubernetes--completion-function ,tramp-kubernetes-method))) (defconst tramp-kubernetes-connection-local-default-variables '((tramp-config-check . tramp-kubernetes--current-context-data) (tramp-extra-expand-args 97 (tramp-kubernetes--container (car tramp-current-connection)) 104 (tramp-kubernetes--pod (car tramp-current-connection)) 120 (tramp-kubernetes--context-namespace (car tramp-current-connection)))) "Default connection-local variables for remote kubernetes connections.") (connection-local-set-profile-variables 'tramp-kubernetes-connection-local-default-profile tramp-kubernetes-connection-local-default-variables) (connection-local-set-profiles `(:application tramp :protocol ,tramp-kubernetes-method) 'tramp-kubernetes-connection-local-default-profile))
 
 (autoload 'tramp-enable-toolbox-method "tramp-container" "\
 Enable connection to Toolbox containers." nil nil)
@@ -1049,7 +1092,7 @@ List of encrypted remote directories.")
 Return the encrypted remote directory NAME belongs to.
 If NAME doesn't belong to an encrypted remote directory, return nil." (catch 'crypt-file-name-p (and tramp-crypt-enabled (stringp name) (not (file-name-quoted-p name)) (not (string-suffix-p tramp-crypt-encfs-config name)) (not (string-prefix-p ".#" (file-name-nondirectory name))) (dolist (dir tramp-crypt-directories) (and (string-prefix-p dir (file-name-as-directory (expand-file-name name))) (throw 'crypt-file-name-p dir))))))
 
-(defconst tramp-crypt-file-name-handler-alist '((abbreviate-file-name . identity) (access-file . tramp-crypt-handle-access-file) (add-name-to-file . tramp-handle-add-name-to-file) (copy-directory . tramp-handle-copy-directory) (copy-file . tramp-crypt-handle-copy-file) (delete-directory . tramp-crypt-handle-delete-directory) (delete-file . tramp-crypt-handle-delete-file) (directory-files . tramp-crypt-handle-directory-files) (directory-files-and-attributes . tramp-handle-directory-files-and-attributes) (dired-compress-file . ignore) (dired-uncache . tramp-handle-dired-uncache) (exec-path . ignore) (file-accessible-directory-p . tramp-handle-file-accessible-directory-p) (file-acl . ignore) (file-attributes . tramp-crypt-handle-file-attributes) (file-directory-p . tramp-handle-file-directory-p) (file-equal-p . tramp-handle-file-equal-p) (file-executable-p . tramp-crypt-handle-file-executable-p) (file-exists-p . tramp-crypt-handle-file-exists-p) (file-in-directory-p . tramp-handle-file-in-directory-p) (file-local-copy . tramp-handle-file-local-copy) (file-locked-p . tramp-crypt-handle-file-locked-p) (file-modes . tramp-handle-file-modes) (file-name-all-completions . tramp-crypt-handle-file-name-all-completions) (file-name-case-insensitive-p . ignore) (file-name-completion . tramp-handle-file-name-completion) (file-newer-than-file-p . tramp-handle-file-newer-than-file-p) (file-notify-add-watch . tramp-handle-file-notify-add-watch) (file-notify-rm-watch . tramp-handle-file-notify-rm-watch) (file-notify-valid-p . tramp-handle-file-notify-valid-p) (file-ownership-preserved-p . tramp-crypt-handle-file-ownership-preserved-p) (file-readable-p . tramp-crypt-handle-file-readable-p) (file-regular-p . tramp-handle-file-regular-p) (file-selinux-context . ignore) (file-symlink-p . tramp-handle-file-symlink-p) (file-system-info . tramp-crypt-handle-file-system-info) (file-writable-p . tramp-crypt-handle-file-writable-p) (find-backup-file-name . tramp-handle-find-backup-file-name) (insert-directory . tramp-crypt-handle-insert-directory) (insert-file-contents . tramp-handle-insert-file-contents) (list-system-processes . ignore) (load . tramp-handle-load) (lock-file . tramp-crypt-handle-lock-file) (make-auto-save-file-name . tramp-handle-make-auto-save-file-name) (make-directory . tramp-crypt-handle-make-directory) (make-directory-internal . ignore) (make-lock-file-name . tramp-handle-make-lock-file-name) (make-nearby-temp-file . tramp-handle-make-nearby-temp-file) (make-process . ignore) (make-symbolic-link . tramp-handle-make-symbolic-link) (memory-info . ignore) (process-attributes . ignore) (process-file . ignore) (rename-file . tramp-crypt-handle-rename-file) (set-file-acl . ignore) (set-file-modes . tramp-crypt-handle-set-file-modes) (set-file-selinux-context . ignore) (set-file-times . tramp-crypt-handle-set-file-times) (set-visited-file-modtime . tramp-handle-set-visited-file-modtime) (shell-command . ignore) (start-file-process . ignore) (temporary-file-directory . tramp-handle-temporary-file-directory) (tramp-set-file-uid-gid . tramp-crypt-handle-set-file-uid-gid) (unhandled-file-name-directory . ignore) (unlock-file . tramp-crypt-handle-unlock-file) (vc-registered . ignore) (verify-visited-file-modtime . tramp-handle-verify-visited-file-modtime) (write-region . tramp-handle-write-region)) "\
+(defconst tramp-crypt-file-name-handler-alist '((abbreviate-file-name . identity) (access-file . tramp-crypt-handle-access-file) (add-name-to-file . tramp-handle-add-name-to-file) (copy-directory . tramp-handle-copy-directory) (copy-file . tramp-crypt-handle-copy-file) (delete-directory . tramp-crypt-handle-delete-directory) (delete-file . tramp-crypt-handle-delete-file) (directory-files . tramp-crypt-handle-directory-files) (directory-files-and-attributes . tramp-handle-directory-files-and-attributes) (dired-compress-file . ignore) (dired-uncache . tramp-handle-dired-uncache) (exec-path . ignore) (file-accessible-directory-p . tramp-handle-file-accessible-directory-p) (file-acl . ignore) (file-attributes . tramp-crypt-handle-file-attributes) (file-directory-p . tramp-handle-file-directory-p) (file-equal-p . tramp-handle-file-equal-p) (file-executable-p . tramp-crypt-handle-file-executable-p) (file-exists-p . tramp-crypt-handle-file-exists-p) (file-in-directory-p . tramp-handle-file-in-directory-p) (file-local-copy . tramp-handle-file-local-copy) (file-locked-p . tramp-crypt-handle-file-locked-p) (file-modes . tramp-handle-file-modes) (file-name-all-completions . tramp-crypt-handle-file-name-all-completions) (file-name-case-insensitive-p . ignore) (file-name-completion . tramp-handle-file-name-completion) (file-newer-than-file-p . tramp-handle-file-newer-than-file-p) (file-notify-add-watch . tramp-handle-file-notify-add-watch) (file-notify-rm-watch . tramp-handle-file-notify-rm-watch) (file-notify-valid-p . tramp-handle-file-notify-valid-p) (file-ownership-preserved-p . tramp-crypt-handle-file-ownership-preserved-p) (file-readable-p . tramp-crypt-handle-file-readable-p) (file-regular-p . tramp-handle-file-regular-p) (file-selinux-context . ignore) (file-symlink-p . tramp-handle-file-symlink-p) (file-system-info . tramp-crypt-handle-file-system-info) (file-writable-p . tramp-crypt-handle-file-writable-p) (find-backup-file-name . tramp-handle-find-backup-file-name) (insert-directory . tramp-crypt-handle-insert-directory) (insert-file-contents . tramp-handle-insert-file-contents) (list-system-processes . ignore) (load . tramp-handle-load) (lock-file . tramp-crypt-handle-lock-file) (make-auto-save-file-name . tramp-handle-make-auto-save-file-name) (make-directory . tramp-crypt-handle-make-directory) (make-directory-internal . ignore) (make-lock-file-name . tramp-handle-make-lock-file-name) (make-nearby-temp-file . tramp-handle-make-nearby-temp-file) (make-process . ignore) (make-symbolic-link . tramp-handle-make-symbolic-link) (memory-info . ignore) (process-attributes . ignore) (process-file . ignore) (rename-file . tramp-crypt-handle-rename-file) (set-file-acl . ignore) (set-file-modes . tramp-crypt-handle-set-file-modes) (set-file-selinux-context . ignore) (set-file-times . tramp-crypt-handle-set-file-times) (set-visited-file-modtime . tramp-crypt-handle-set-visited-file-modtime) (shell-command . ignore) (start-file-process . ignore) (temporary-file-directory . tramp-handle-temporary-file-directory) (tramp-set-file-uid-gid . tramp-crypt-handle-set-file-uid-gid) (unhandled-file-name-directory . ignore) (unlock-file . tramp-crypt-handle-unlock-file) (vc-registered . ignore) (verify-visited-file-modtime . tramp-crypt-handle-verify-visited-file-modtime) (write-region . tramp-handle-write-region)) "\
 Alist of handler functions for crypt method.
 Operations not mentioned here will be handled by the default Emacs primitives.")
 
@@ -1095,6 +1138,14 @@ pass to the OPERATION.
 Check if it's a VEC-OR-FILENAME that should be forwarded to Ange-FTP." (and-let* ((vec (tramp-ensure-dissected-file-name vec-or-filename)) ((string= (tramp-file-name-method vec) tramp-ftp-method)))))
 
 (tramp--with-startup (add-to-list 'tramp-foreign-file-name-handler-alist (cons #'tramp-ftp-file-name-p #'tramp-ftp-file-name-handler)))
+
+;;;***
+
+;;;### (autoloads nil "tramp-fuse" "tramp-fuse.el" (0 0 0 0))
+;;; Generated autoloads from tramp-fuse.el
+
+(defconst tramp-fuse-name-prefix "tramp-" "\
+Prefix to use for temporary FUSE mount points.")
 
 ;;;***
 
@@ -1239,7 +1290,7 @@ the default storage location, e.g. \"$HOME/.sh_history\".")
 (defconst tramp-initial-end-of-output "#$ " "\
 Prompt when establishing a connection.")
 
-(tramp--with-startup (add-to-list 'tramp-methods `("rcp" (tramp-login-program "rsh") (tramp-login-args (("%h") ("-l" "%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "rcp") (tramp-copy-args (("-p" "%k") ("-r"))) (tramp-copy-keep-date t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("remcp" (tramp-login-program "remsh") (tramp-login-args (("%h") ("-l" "%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "rcp") (tramp-copy-args (("-p" "%k"))) (tramp-copy-keep-date t))) (add-to-list 'tramp-methods `("scp" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("%h"))) (tramp-async-args (("-q"))) (tramp-direct-async ("-t" "-t")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "scp") (tramp-copy-args (("-P" "%p") ("-p" "%k") ("%x") ("%y") ("%z") ("-q") ("-r") ("%c"))) (tramp-copy-keep-date t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("scpx" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("-t" "-t") ("-o" "RemoteCommand=\"%l\"") ("%h"))) (tramp-async-args (("-q"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "scp") (tramp-copy-args (("-P" "%p") ("-p" "%k") ("%x") ("%y") ("%z") ("-q") ("-r") ("%c"))) (tramp-copy-keep-date t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("rsync" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("%h"))) (tramp-async-args (("-q"))) (tramp-direct-async t) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "rsync") (tramp-copy-args (("-t" "%k") ("-p") ("-r") ("-s") ("-c"))) (tramp-copy-env (("RSYNC_RSH") ("ssh") ("%c"))) (tramp-copy-keep-date t) (tramp-copy-keep-tmpfile t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("rsh" (tramp-login-program "rsh") (tramp-login-args (("%h") ("-l" "%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("remsh" (tramp-login-program "remsh") (tramp-login-args (("%h") ("-l" "%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("ssh" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("%h"))) (tramp-async-args (("-q"))) (tramp-direct-async ("-t" "-t")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("sshx" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("-t" "-t") ("-o" "RemoteCommand=\"%l\"") ("%h"))) (tramp-async-args (("-q"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("telnet" (tramp-login-program "telnet") (tramp-login-args (("%h") ("%p") ("%n"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("su" (tramp-login-program "su") (tramp-login-args (("-") ("%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-connection-timeout 10))) (add-to-list 'tramp-methods `("sg" (tramp-login-program "sg") (tramp-login-args (("-") ("%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-args ("-c")) (tramp-connection-timeout 10))) (add-to-list 'tramp-methods `("sudo" (tramp-login-program "env") (tramp-login-args (("SUDO_PROMPT=P\"\"a\"\"s\"\"s\"\"w\"\"o\"\"r\"\"d\"\":") ("sudo") ("-u" "%u") ("-s") ("-H") ("%l"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-connection-timeout 10) (tramp-session-timeout 300) (tramp-password-previous-hop t))) (add-to-list 'tramp-methods `("doas" (tramp-login-program "doas") (tramp-login-args (("-u" "%u") ("-s"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-args ("-c")) (tramp-connection-timeout 10) (tramp-session-timeout 300) (tramp-password-previous-hop t))) (add-to-list 'tramp-methods `("plink" (tramp-login-program "plink") (tramp-login-args (("-l" "%u") ("-P" "%p") ("-ssh") ("%c") ("-t") ("%h") ("\"") (,(format "env 'TERM=%s' 'PROMPT_COMMAND=' 'PS1=%s'" tramp-terminal-type tramp-initial-end-of-output)) ("%l") ("\""))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("plinkx" (tramp-login-program "plink") (tramp-login-args (("-load") ("%h") ("%c") ("-t") ("\"") (,(format "env 'TERM=%s' 'PROMPT_COMMAND=' 'PS1=%s'" tramp-terminal-type tramp-initial-end-of-output)) ("%l") ("\""))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("pscp" (tramp-login-program "plink") (tramp-login-args (("-l" "%u") ("-P" "%p") ("-ssh") ("%c") ("-t") ("%h") ("\"") (,(format "env 'TERM=%s' 'PROMPT_COMMAND=' 'PS1=%s'" tramp-terminal-type tramp-initial-end-of-output)) ("%l") ("\""))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "pscp") (tramp-copy-args (("-l" "%u") ("-P" "%p") ("-scp") ("%c") ("-p" "%k") ("-q") ("-r"))) (tramp-copy-keep-date t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("psftp" (tramp-login-program "plink") (tramp-login-args (("-l" "%u") ("-P" "%p") ("-ssh") ("%c") ("-t") ("%h") ("\"") (,(format "env 'TERM=%s' 'PROMPT_COMMAND=' 'PS1=%s'" tramp-terminal-type tramp-initial-end-of-output)) ("%l") ("\""))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "pscp") (tramp-copy-args (("-l" "%u") ("-P" "%p") ("-sftp") ("%c") ("-p" "%k"))) (tramp-copy-keep-date t))) (add-to-list 'tramp-default-method-alist `(,tramp-local-host-regexp ,(rx bos (literal tramp-root-id-string) eos) "su")) (add-to-list 'tramp-default-user-alist `(,(rx bos (| "su" "sudo" "doas") eos) nil ,tramp-root-id-string)) (add-to-list 'tramp-default-user-alist `(,(rx bos (| "rcp" "remcp" "rsh" "telnet") eos) nil ,(user-login-name))))
+(tramp--with-startup (add-to-list 'tramp-methods `("rcp" (tramp-login-program "rsh") (tramp-login-args (("%h") ("-l" "%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "rcp") (tramp-copy-args (("-p" "%k") ("-r"))) (tramp-copy-keep-date t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("remcp" (tramp-login-program "remsh") (tramp-login-args (("%h") ("-l" "%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "rcp") (tramp-copy-args (("-p" "%k"))) (tramp-copy-keep-date t))) (add-to-list 'tramp-methods `("scp" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("-o" ,(format "SetEnv=\"TERM=%s\"" tramp-terminal-type)) ("%h"))) (tramp-async-args (("-q"))) (tramp-direct-async ("-t" "-t")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "scp") (tramp-copy-args (("-P" "%p") ("-p" "%k") ("%x") ("%y") ("%z") ("-q") ("-r") ("%c"))) (tramp-copy-keep-date t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("scpx" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("-t" "-t") ("-o" "RemoteCommand=\"%l\"") ("-o" ,(format "SetEnv=\"TERM=%s\"" tramp-terminal-type)) ("%h"))) (tramp-async-args (("-q"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "scp") (tramp-copy-args (("-P" "%p") ("-p" "%k") ("%x") ("%y") ("%z") ("-q") ("-r") ("%c"))) (tramp-copy-keep-date t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("rsync" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("-o" ,(format "SetEnv=\"TERM=%s\"" tramp-terminal-type)) ("%h"))) (tramp-async-args (("-q"))) (tramp-direct-async ("-t" "-t")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "rsync") (tramp-copy-args (("-t" "%k") ("-p") ("-r") ("-s") ("-c"))) (tramp-copy-env (("RSYNC_RSH") ("ssh") ("%c"))) (tramp-copy-keep-date t) (tramp-copy-keep-tmpfile t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("rsh" (tramp-login-program "rsh") (tramp-login-args (("%h") ("-l" "%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("remsh" (tramp-login-program "remsh") (tramp-login-args (("%h") ("-l" "%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("ssh" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("-o" ,(format "SetEnv=\"TERM=%s\"" tramp-terminal-type)) ("%h"))) (tramp-async-args (("-q"))) (tramp-direct-async ("-t" "-t")) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("sshx" (tramp-login-program "ssh") (tramp-login-args (("-l" "%u") ("-p" "%p") ("%c") ("-e" "none") ("-t" "-t") ("-o" ,(format "SetEnv=\"TERM=%s\"" tramp-terminal-type)) ("-o" "RemoteCommand=\"%l\"") ("%h"))) (tramp-async-args (("-q"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("telnet" (tramp-login-program "telnet") (tramp-login-args (("%h") ("%p") ("%n"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("su" (tramp-login-program "su") (tramp-login-args (("-") ("%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-connection-timeout 10))) (add-to-list 'tramp-methods `("sg" (tramp-login-program "sg") (tramp-login-args (("-") ("%u"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-args ("-c")) (tramp-connection-timeout 10))) (add-to-list 'tramp-methods `("sudo" (tramp-login-program "env") (tramp-login-args (("SUDO_PROMPT=P\"\"a\"\"s\"\"s\"\"w\"\"o\"\"r\"\"d\"\":") (,(format "TERM=%s" tramp-terminal-type)) ("sudo") ("-u" "%u") ("-s") ("-H") ("%l"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-connection-timeout 10) (tramp-session-timeout 300) (tramp-password-previous-hop t))) (add-to-list 'tramp-methods `("doas" (tramp-login-program "doas") (tramp-login-args (("-u" "%u") ("-s"))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-args ("-c")) (tramp-connection-timeout 10) (tramp-session-timeout 300) (tramp-password-previous-hop t))) (add-to-list 'tramp-methods `("plink" (tramp-login-program "plink") (tramp-login-args (("-l" "%u") ("-P" "%p") ("-ssh") ("%c") ("-t") ("%h") ("\"") (,(format "env 'TERM=%s' 'PROMPT_COMMAND=' 'PS1=%s'" tramp-terminal-type tramp-initial-end-of-output)) ("%l") ("\""))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("plinkx" (tramp-login-program "plink") (tramp-login-args (("-load") ("%h") ("%c") ("-t") ("\"") (,(format "env 'TERM=%s' 'PROMPT_COMMAND=' 'PS1=%s'" tramp-terminal-type tramp-initial-end-of-output)) ("%l") ("\""))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (add-to-list 'tramp-methods `("pscp" (tramp-login-program "plink") (tramp-login-args (("-l" "%u") ("-P" "%p") ("-ssh") ("%c") ("-t") ("%h") ("\"") (,(format "env 'TERM=%s' 'PROMPT_COMMAND=' 'PS1=%s'" tramp-terminal-type tramp-initial-end-of-output)) ("%l") ("\""))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "pscp") (tramp-copy-args (("-l" "%u") ("-P" "%p") ("-scp") ("%c") ("-p" "%k") ("-q") ("-r"))) (tramp-copy-keep-date t) (tramp-copy-recursive t))) (add-to-list 'tramp-methods `("psftp" (tramp-login-program "plink") (tramp-login-args (("-l" "%u") ("-P" "%p") ("-ssh") ("%c") ("-t") ("%h") ("\"") (,(format "env 'TERM=%s' 'PROMPT_COMMAND=' 'PS1=%s'" tramp-terminal-type tramp-initial-end-of-output)) ("%l") ("\""))) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")) (tramp-copy-program "pscp") (tramp-copy-args (("-l" "%u") ("-P" "%p") ("-sftp") ("%c") ("-p" "%k"))) (tramp-copy-keep-date t))) (add-to-list 'tramp-default-method-alist `(,tramp-local-host-regexp ,(rx bos (literal tramp-root-id-string) eos) "su")) (add-to-list 'tramp-default-user-alist `(,(rx bos (| "su" "sudo" "doas") eos) nil ,tramp-root-id-string)) (add-to-list 'tramp-default-user-alist `(,(rx bos (| "rcp" "remcp" "rsh" "telnet") eos) nil ,(user-login-name))))
 
 (defconst tramp-completion-function-alist-rsh '((tramp-parse-rhosts "/etc/hosts.equiv") (tramp-parse-rhosts "~/.rhosts")) "\
 Default list of (FUNCTION FILE) pairs to be examined for rsh methods.")
@@ -1306,6 +1357,12 @@ Whether VEC uses a method from `tramp-sh-file-name-handler'.
 
 (tramp--with-startup (tramp-register-foreign-file-name-handler #'identity #'tramp-sh-file-name-handler 'append))
 
+(autoload 'tramp-timeout-session "tramp-sh" "\
+Close the connection VEC after a session timeout.
+If there is just some editing, retry it after 5 seconds.
+
+\(fn VEC)" nil nil)
+
 (autoload 'tramp-get-remote-path "tramp-sh" "\
 Compile list of remote directories for PATH.
 Nonexistent directories are removed from spec.
@@ -1355,7 +1412,7 @@ Tramp method for sshfs mounts.")
 
 (defvar tramp-default-remote-shell)
 
-(tramp--with-startup (add-to-list 'tramp-methods `(,tramp-sshfs-method (tramp-mount-args (("-C") ("-p" "%p") ("-o" "dir_cache=no") ("-o" "transform_symlinks") ("-o" "idmap=user,reconnect"))) (tramp-login-program "ssh") (tramp-login-args (("-q") ("-l" "%u") ("-p" "%p") ("-e" "none") ("%a" "%a") ("%h") ("%l"))) (tramp-direct-async t) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (tramp-set-completion-function tramp-sshfs-method tramp-completion-function-alist-ssh))
+(tramp--with-startup (add-to-list 'tramp-methods `(,tramp-sshfs-method (tramp-mount-args (("-C") ("-p" "%p") ("-o" "dir_cache=no") ("-o" "transform_symlinks") ("-o" "idmap=user,reconnect"))) (tramp-login-program "ssh") (tramp-login-args (("-q") ("-l" "%u") ("-p" "%p") ("-e" "none") ("%a" "%a") ("-o" ,(format "SetEnv=\"TERM=%s\"" tramp-terminal-type)) ("%h") ("%l"))) (tramp-direct-async t) (tramp-remote-shell ,tramp-default-remote-shell) (tramp-remote-shell-login ("-l")) (tramp-remote-shell-args ("-c")))) (tramp-set-completion-function tramp-sshfs-method tramp-completion-function-alist-ssh))
 
 (defconst tramp-sshfs-file-name-handler-alist '((access-file . tramp-handle-access-file) (add-name-to-file . tramp-handle-add-name-to-file) (copy-directory . tramp-handle-copy-directory) (copy-file . tramp-sshfs-handle-copy-file) (delete-directory . tramp-fuse-handle-delete-directory) (delete-file . tramp-fuse-handle-delete-file) (directory-file-name . tramp-handle-directory-file-name) (directory-files . tramp-fuse-handle-directory-files) (directory-files-and-attributes . tramp-handle-directory-files-and-attributes) (dired-compress-file . ignore) (dired-uncache . tramp-handle-dired-uncache) (exec-path . tramp-sshfs-handle-exec-path) (expand-file-name . tramp-handle-expand-file-name) (file-accessible-directory-p . tramp-handle-file-accessible-directory-p) (file-acl . ignore) (file-attributes . tramp-fuse-handle-file-attributes) (file-directory-p . tramp-handle-file-directory-p) (file-equal-p . tramp-handle-file-equal-p) (file-executable-p . tramp-fuse-handle-file-executable-p) (file-exists-p . tramp-fuse-handle-file-exists-p) (file-group-gid . tramp-handle-file-group-gid) (file-in-directory-p . tramp-handle-file-in-directory-p) (file-local-copy . tramp-handle-file-local-copy) (file-locked-p . tramp-handle-file-locked-p) (file-modes . tramp-handle-file-modes) (file-name-all-completions . tramp-fuse-handle-file-name-all-completions) (file-name-as-directory . tramp-handle-file-name-as-directory) (file-name-case-insensitive-p . tramp-handle-file-name-case-insensitive-p) (file-name-completion . tramp-handle-file-name-completion) (file-name-directory . tramp-handle-file-name-directory) (file-name-nondirectory . tramp-handle-file-name-nondirectory) (file-newer-than-file-p . tramp-handle-file-newer-than-file-p) (file-notify-add-watch . tramp-handle-file-notify-add-watch) (file-notify-rm-watch . tramp-handle-file-notify-rm-watch) (file-notify-valid-p . tramp-handle-file-notify-valid-p) (file-ownership-preserved-p . ignore) (file-readable-p . tramp-handle-file-readable-p) (file-regular-p . tramp-handle-file-regular-p) (file-remote-p . tramp-handle-file-remote-p) (file-selinux-context . tramp-handle-file-selinux-context) (file-symlink-p . tramp-handle-file-symlink-p) (file-system-info . tramp-sshfs-handle-file-system-info) (file-truename . tramp-handle-file-truename) (file-user-uid . tramp-handle-file-user-uid) (file-writable-p . tramp-sshfs-handle-file-writable-p) (find-backup-file-name . tramp-handle-find-backup-file-name) (insert-directory . tramp-handle-insert-directory) (insert-file-contents . tramp-sshfs-handle-insert-file-contents) (list-system-processes . tramp-handle-list-system-processes) (load . tramp-handle-load) (lock-file . tramp-handle-lock-file) (make-auto-save-file-name . tramp-handle-make-auto-save-file-name) (make-directory . tramp-fuse-handle-make-directory) (make-directory-internal . ignore) (make-lock-file-name . tramp-handle-make-lock-file-name) (make-nearby-temp-file . tramp-handle-make-nearby-temp-file) (make-process . tramp-handle-make-process) (make-symbolic-link . tramp-handle-make-symbolic-link) (memory-info . tramp-handle-memory-info) (process-attributes . tramp-handle-process-attributes) (process-file . tramp-sshfs-handle-process-file) (rename-file . tramp-sshfs-handle-rename-file) (set-file-acl . ignore) (set-file-modes . tramp-sshfs-handle-set-file-modes) (set-file-selinux-context . ignore) (set-file-times . tramp-sshfs-handle-set-file-times) (set-visited-file-modtime . tramp-handle-set-visited-file-modtime) (shell-command . tramp-handle-shell-command) (start-file-process . tramp-handle-start-file-process) (substitute-in-file-name . tramp-handle-substitute-in-file-name) (temporary-file-directory . tramp-handle-temporary-file-directory) (tramp-get-home-directory . ignore) (tramp-get-remote-gid . ignore) (tramp-get-remote-groups . ignore) (tramp-get-remote-uid . ignore) (tramp-set-file-uid-gid . ignore) (unhandled-file-name-directory . ignore) (unlock-file . tramp-handle-unlock-file) (vc-registered . ignore) (verify-visited-file-modtime . tramp-handle-verify-visited-file-modtime) (write-region . tramp-sshfs-handle-write-region)) "\
 Alist of handler functions for Tramp SSHFS method.
@@ -1414,7 +1471,7 @@ UU-encode the region between BEG and END.
 ;;;### (autoloads nil "trampver" "trampver.el" (0 0 0 0))
 ;;; Generated autoloads from trampver.el
 
-(defconst tramp-version "2.7.2.4" "\
+(defconst tramp-version "2.8.0" "\
 This version of Tramp.")
 
 (defconst tramp-bug-report-address "tramp-devel@gnu.org" "\
@@ -1422,7 +1479,7 @@ Email address to send bug reports to.")
 
 ;;;***
 
-;;;### (autoloads nil nil ("tramp-compat.el" "tramp-fuse.el" "tramp-integration.el")
+;;;### (autoloads nil nil ("tramp-compat.el" "tramp-integration.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
