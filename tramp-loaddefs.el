@@ -11,7 +11,7 @@ Forms to be executed at the end of tramp.el.")
 
 (put 'tramp--startup-hook 'tramp-suppress-trace t)
 
-(unless (assq 'autoload-macro macro-declarations-alist) (push '(autoload-macro ignore) macro-declarations-alist))
+(eval-and-compile (unless (assq 'autoload-macro macro-declarations-alist) (push '(autoload-macro ignore) macro-declarations-alist)))
 
 (defmacro tramp--with-startup (&rest body) "\
 Schedule BODY to be executed at the end of tramp.el." (declare (autoload-macro expand)) `(add-hook 'tramp--startup-hook (lambda nil ,@body)))
@@ -1474,7 +1474,7 @@ UU-encode the region between BEG and END.
 ;;;### (autoloads nil "trampver" "trampver.el" (0 0 0 0))
 ;;; Generated autoloads from trampver.el
 
-(defconst tramp-version "2.8.0.2" "\
+(defconst tramp-version "2.8.0.3" "\
 This version of Tramp.")
 
 (defconst tramp-bug-report-address "tramp-devel@gnu.org" "\
