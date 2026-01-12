@@ -98,9 +98,8 @@ pair of the form (KEY VALUE).  The following KEYs are defined:
     - \"%a\" adds the pseudo-terminal allocation argument \"-t\" in
        asynchronous processes, if the connection type is not `pipe'.
 
-    The existence of `tramp-login-args', combined with the
-    absence of `tramp-copy-args', is an indication that the
-    method is capable of multi-hops.
+    The existence of `tramp-login-args' is an indication that the method
+    is capable of multi-hops.
 
   * `tramp-async-args'
     When an asynchronous process is started, we know already that
