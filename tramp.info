@@ -1,5 +1,4 @@
-This is docEvpyeb.info, produced by makeinfo version 7.1.1 from
-tramp.texi.
+This is tramp.info, produced by makeinfo version 7.1.1 from tramp.texi.
 
 Copyright © 1999-2026 Free Software Foundation, Inc.
 
@@ -20,12 +19,12 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docEvpyeb.info,  Node: Top,  Next: Overview,  Prev: (dir),  Up: (dir)
+File: tramp.info,  Node: Top,  Next: Overview,  Prev: (dir),  Up: (dir)
 
-TRAMP 2.8.1 User Manual
-***********************
+TRAMP 2.8.1.1 User Manual
+*************************
 
-This file documents TRAMP 2.8.1, a remote file editing package for
+This file documents TRAMP 2.8.1.1, a remote file editing package for
 Emacs.
 
    TRAMP stands for "Transparent Remote (file) Access, Multiple
@@ -133,7 +132,7 @@ How file names, directories and localnames are mangled and managed
 
 
 
-File: docEvpyeb.info,  Node: Overview,  Next: Obtaining TRAMP,  Up: Top
+File: tramp.info,  Node: Overview,  Next: Obtaining TRAMP,  Up: Top
 
 1 An overview of TRAMP
 **********************
@@ -256,7 +255,7 @@ behind the scenes when you open a file with TRAMP.
    (1) *note Temporary directory::
 
 
-File: docEvpyeb.info,  Node: Obtaining TRAMP,  Next: Quick Start Guide,  Prev: Overview,  Up: Top
+File: tramp.info,  Node: Obtaining TRAMP,  Next: Quick Start Guide,  Prev: Overview,  Up: Top
 
 2 Obtaining TRAMP
 *****************
@@ -326,7 +325,7 @@ Run ‘autoconf’ as follows to generate an up-to-date ‘configure’ script:
 how to install TRAMP.
 
 
-File: docEvpyeb.info,  Node: Quick Start Guide,  Next: Configuration,  Prev: Obtaining TRAMP,  Up: Top
+File: tramp.info,  Node: Quick Start Guide,  Next: Configuration,  Prev: Obtaining TRAMP,  Up: Top
 
 3 Short introduction how to use TRAMP
 *************************************
@@ -468,7 +467,7 @@ accessed via the ‘adb’ command.  No user or host name is needed.  The
 file name syntax is ‘/adb::/path/to/file’.
 
 
-File: docEvpyeb.info,  Node: Configuration,  Next: Usage,  Prev: Quick Start Guide,  Up: Top
+File: tramp.info,  Node: Configuration,  Next: Usage,  Prev: Quick Start Guide,  Up: Top
 
 4 Configuring TRAMP
 *******************
@@ -533,7 +532,7 @@ non-‘nil’, *Note (emacs)Directory Variables::.
 * Keeping files encrypted::     Protect remote files by encryption.
 
 
-File: docEvpyeb.info,  Node: Optional methods,  Next: Connection types,  Up: Configuration
+File: tramp.info,  Node: Optional methods,  Next: Connection types,  Up: Configuration
 
 4.1 Optional methods which must be enabled first
 ================================================
@@ -554,7 +553,7 @@ like this to your ‘.emacs’ file:
      (with-eval-after-load 'tramp (tramp-enable-method "toolbox"))
 
 
-File: docEvpyeb.info,  Node: Connection types,  Next: Inline methods,  Prev: Optional methods,  Up: Configuration
+File: tramp.info,  Node: Connection types,  Next: Inline methods,  Prev: Optional methods,  Up: Configuration
 
 4.2 Types of connections to remote hosts
 ========================================
@@ -582,7 +581,7 @@ should consider *note Password handling::, otherwise you will be
 prompted for a password for every copy action.
 
 
-File: docEvpyeb.info,  Node: Inline methods,  Next: External methods,  Prev: Connection types,  Up: Configuration
+File: tramp.info,  Node: Inline methods,  Next: External methods,  Prev: Connection types,  Up: Configuration
 
 4.3 Inline methods
 ==================
@@ -842,7 +841,7 @@ ways:
      This is an optional method, *note Optional methods::.
 
 
-File: docEvpyeb.info,  Node: External methods,  Next: GVFS-based methods,  Prev: Inline methods,  Up: Configuration
+File: tramp.info,  Node: External methods,  Next: GVFS-based methods,  Prev: Inline methods,  Up: Configuration
 
 4.4 External methods
 ====================
@@ -1071,7 +1070,7 @@ Multi-hops::), its inherent inline method is used as well.
      applicable to Android devices connected through USB.
 
 
-File: docEvpyeb.info,  Node: GVFS-based methods,  Next: FUSE-based methods,  Prev: External methods,  Up: Configuration
+File: tramp.info,  Node: GVFS-based methods,  Next: FUSE-based methods,  Prev: External methods,  Up: Configuration
 
 4.5 GVFS-based external methods
 ===============================
@@ -1169,7 +1168,7 @@ TRAMP can use GVFS-based methods.
           (customize-set-variable 'tramp-ftp-method nil)
 
 
-File: docEvpyeb.info,  Node: FUSE-based methods,  Next: Default Method,  Prev: GVFS-based methods,  Up: Configuration
+File: tramp.info,  Node: FUSE-based methods,  Next: Default Method,  Prev: GVFS-based methods,  Up: Configuration
 
 4.6 FUSE-based external methods
 ===============================
@@ -1229,7 +1228,7 @@ this is not possible, TRAMP emulates those operations otherwise.
      properties, *Note Setup of sshfs method::.
 
 
-File: docEvpyeb.info,  Node: Default Method,  Next: Default User,  Prev: FUSE-based methods,  Up: Configuration
+File: tramp.info,  Node: Default Method,  Next: Default User,  Prev: FUSE-based methods,  Up: Configuration
 
 4.7 Selecting a default method
 ==============================
@@ -1310,7 +1309,7 @@ faster than ‘plink’.  But this speed improvement is not always true.
 Windows.  Use method ‘sshx’.
 
 
-File: docEvpyeb.info,  Node: Default User,  Next: Default Host,  Prev: Default Method,  Up: Configuration
+File: tramp.info,  Node: Default User,  Next: Default Host,  Prev: Default Method,  Up: Configuration
 
 4.8 Selecting a default user
 ============================
@@ -1348,7 +1347,7 @@ File: docEvpyeb.info,  Node: Default User,  Next: Default Host,  Prev: Default M
                        '(nil nil "jonas") t)
 
 
-File: docEvpyeb.info,  Node: Default Host,  Next: Multi-hops,  Prev: Default User,  Up: Configuration
+File: tramp.info,  Node: Default Host,  Next: Multi-hops,  Prev: Default User,  Up: Configuration
 
 4.9 Selecting a default host
 ============================
@@ -1378,7 +1377,7 @@ File: docEvpyeb.info,  Node: Default Host,  Next: Multi-hops,  Prev: Default Use
      ‘/nspawn::’ and ‘/sudo::’ have the same effect.
 
 
-File: docEvpyeb.info,  Node: Multi-hops,  Next: Firewalls,  Prev: Default Host,  Up: Configuration
+File: tramp.info,  Node: Multi-hops,  Next: Firewalls,  Prev: Default Host,  Up: Configuration
 
 4.10 Connecting to a remote host using multiple hops
 ====================================================
@@ -1472,7 +1471,7 @@ only.
                        "\\`bastion\\.your\\.domain\\'")
 
 
-File: docEvpyeb.info,  Node: Firewalls,  Next: Customizing Methods,  Prev: Multi-hops,  Up: Configuration
+File: tramp.info,  Node: Firewalls,  Next: Customizing Methods,  Prev: Multi-hops,  Up: Configuration
 
 4.11 Passing firewalls
 ======================
@@ -1512,7 +1511,7 @@ option, and add ‘proxy.your.domain’ as ‘Proxy hostname’, and 3128 as
 ‘proxy.your.domain’ on port 3128.
 
 
-File: docEvpyeb.info,  Node: Customizing Methods,  Next: Customizing Completion,  Prev: Firewalls,  Up: Configuration
+File: tramp.info,  Node: Customizing Methods,  Next: Customizing Completion,  Prev: Firewalls,  Up: Configuration
 
 4.12 Using Non-Standard Methods
 ===============================
@@ -1557,7 +1556,7 @@ They can be installed with Emacs's Package Manager.  This includes
      where ‘box’ is the name of the vagrant box.
 
 
-File: docEvpyeb.info,  Node: Customizing Completion,  Next: Password handling,  Prev: Customizing Methods,  Up: Configuration
+File: tramp.info,  Node: Customizing Completion,  Next: Password handling,  Prev: Customizing Methods,  Up: Configuration
 
 4.13 Selecting config files for user/host name completion
 =========================================================
@@ -1656,7 +1655,7 @@ following conventions:
                ⇒ ((nil "toto") ("daniel" "melancholia"))
 
 
-File: docEvpyeb.info,  Node: Password handling,  Next: Connection caching,  Prev: Customizing Completion,  Up: Configuration
+File: tramp.info,  Node: Password handling,  Next: Connection caching,  Prev: Customizing Completion,  Up: Configuration
 
 4.14 Reusing passwords for several connections
 ==============================================
@@ -1751,7 +1750,7 @@ authentication file or store.
    (2) It overrides ‘password-cache-expiry’.
 
 
-File: docEvpyeb.info,  Node: Connection caching,  Next: Predefined connection information,  Prev: Password handling,  Up: Configuration
+File: tramp.info,  Node: Connection caching,  Next: Predefined connection information,  Prev: Password handling,  Up: Configuration
 
 4.15 Reusing connection related information
 ===========================================
@@ -1775,7 +1774,7 @@ remote host (via the command ‘uname -sr’), it flushes all connection
 related information for that host and creates a new entry.
 
 
-File: docEvpyeb.info,  Node: Predefined connection information,  Next: Remote programs,  Prev: Connection caching,  Up: Configuration
+File: tramp.info,  Node: Predefined connection information,  Next: Remote programs,  Prev: Connection caching,  Up: Configuration
 
 4.16 Setting own connection related information
 ===============================================
@@ -1900,7 +1899,7 @@ properties are listed here:
 this is suppressed.
 
 
-File: docEvpyeb.info,  Node: Remote programs,  Next: Remote shell setup,  Prev: Predefined connection information,  Up: Configuration
+File: tramp.info,  Node: Remote programs,  Next: Remote shell setup,  Prev: Predefined connection information,  Up: Configuration
 
 4.17 How TRAMP finds and uses programs on the remote host
 =========================================================
@@ -1967,7 +1966,7 @@ tramp-cleanup-this-connection <RET>’ or friends (*note Cleanup remote
 connections::).
 
 
-File: docEvpyeb.info,  Node: Remote shell setup,  Next: Ssh setup,  Prev: Remote programs,  Up: Configuration
+File: tramp.info,  Node: Remote shell setup,  Next: Ssh setup,  Prev: Remote programs,  Up: Configuration
 
 4.18 Remote shell setup hints
 =============================
@@ -2217,7 +2216,7 @@ Interactive shell prompt
      connection information::).
 
 
-File: docEvpyeb.info,  Node: Ssh setup,  Next: FUSE setup,  Prev: Remote shell setup,  Up: Configuration
+File: tramp.info,  Node: Ssh setup,  Next: FUSE setup,  Prev: Remote shell setup,  Up: Configuration
 
 4.19 Ssh setup hints
 ====================
@@ -2413,7 +2412,7 @@ Suite of tools.
    The fallback is to start Emacs from a shell.
 
 
-File: docEvpyeb.info,  Node: FUSE setup,  Next: Android shell setup,  Prev: Ssh setup,  Up: Configuration
+File: tramp.info,  Node: FUSE setup,  Next: Android shell setup,  Prev: Ssh setup,  Up: Configuration
 
 4.20 FUSE setup hints
 =====================
@@ -2474,7 +2473,7 @@ processes, using the ‘ssh’ command.  These don't need to be changed.
    (1) *note Temporary directory::
 
 
-File: docEvpyeb.info,  Node: Android shell setup,  Next: Kubernetes setup,  Prev: FUSE setup,  Up: Configuration
+File: tramp.info,  Node: Android shell setup,  Next: Kubernetes setup,  Prev: FUSE setup,  Up: Configuration
 
 4.21 Android shell setup hints
 ==============================
@@ -2553,7 +2552,7 @@ provided these settings are adjusted:
      /ssh:android: <RET>’.
 
 
-File: docEvpyeb.info,  Node: Kubernetes setup,  Next: Auto-save File Lock and Backup,  Prev: Android shell setup,  Up: Configuration
+File: tramp.info,  Node: Kubernetes setup,  Next: Auto-save File Lock and Backup,  Prev: Android shell setup,  Up: Configuration
 
 4.22 Kubernetes setup hints
 ===========================
@@ -2576,7 +2575,7 @@ respectively.  An explicit ‘%NAMESPACE’ postfix in the host name takes
 precedence.
 
 
-File: docEvpyeb.info,  Node: Auto-save File Lock and Backup,  Next: Keeping files encrypted,  Prev: Kubernetes setup,  Up: Configuration
+File: tramp.info,  Node: Auto-save File Lock and Backup,  Next: Keeping files encrypted,  Prev: Kubernetes setup,  Up: Configuration
 
 4.23 Auto-save, File Lock and Backup configuration
 ==================================================
@@ -2673,7 +2672,7 @@ directory.  If you want to suppress this confirmation question, set user
 option ‘tramp-allow-unsafe-temporary-files’ to ‘t’.
 
 
-File: docEvpyeb.info,  Node: Keeping files encrypted,  Prev: Auto-save File Lock and Backup,  Up: Configuration
+File: tramp.info,  Node: Keeping files encrypted,  Prev: Auto-save File Lock and Backup,  Up: Configuration
 
 4.24 Protect remote files by encryption
 =======================================
@@ -2771,7 +2770,7 @@ directory.
      subdirectories will remain encrypted.
 
 
-File: docEvpyeb.info,  Node: Usage,  Next: Bug Reports,  Prev: Configuration,  Up: Top
+File: tramp.info,  Node: Usage,  Next: Bug Reports,  Prev: Configuration,  Up: Top
 
 5 Using TRAMP
 *************
@@ -2802,7 +2801,7 @@ Emacs that may cause missed prompts when using TRAMP.
 * Archive file names::          Access to files in file archives.
 
 
-File: docEvpyeb.info,  Node: File name syntax,  Next: Change file name syntax,  Up: Usage
+File: tramp.info,  Node: File name syntax,  Next: Change file name syntax,  Up: Usage
 
 5.1 TRAMP file name conventions
 ===============================
@@ -2851,7 +2850,7 @@ Default Host::.  For syntactical reasons, the default method must be
 indicated by the pseudo method ‘-’.
 
 
-File: docEvpyeb.info,  Node: Change file name syntax,  Next: File name completion,  Prev: File name syntax,  Up: Usage
+File: tramp.info,  Node: Change file name syntax,  Next: File name completion,  Prev: File name syntax,  Up: Usage
 
 5.2 Alternative file name syntax
 ================================
@@ -2886,7 +2885,7 @@ changed.
      more appropriate.  *note (elisp)Magic File Names::.
 
 
-File: docEvpyeb.info,  Node: File name completion,  Next: Ad-hoc multi-hops,  Prev: Change file name syntax,  Up: Usage
+File: tramp.info,  Node: File name completion,  Next: Ad-hoc multi-hops,  Prev: Change file name syntax,  Up: Usage
 
 5.3 File name completion
 ========================
@@ -2959,7 +2958,7 @@ Example:
           ⊣ /etc
 
 
-File: docEvpyeb.info,  Node: Ad-hoc multi-hops,  Next: Home directories,  Prev: File name completion,  Up: Usage
+File: tramp.info,  Node: Ad-hoc multi-hops,  Next: Home directories,  Prev: File name completion,  Up: Usage
 
 5.4 Declaring multiple hops in the file name
 ============================================
@@ -3086,7 +3085,7 @@ on both remote hosts ‘host1’ and ‘host2’ there is a docker container
 definition is expanded for.
 
 
-File: docEvpyeb.info,  Node: Home directories,  Next: Remote processes,  Prev: Ad-hoc multi-hops,  Up: Usage
+File: tramp.info,  Node: Home directories,  Next: Remote processes,  Prev: Ad-hoc multi-hops,  Up: Usage
 
 5.5 Expanding ‘~’ to home directory
 ===================================
@@ -3131,7 +3130,7 @@ Example:
 connection property "~" must be used instead.
 
 
-File: docEvpyeb.info,  Node: Remote processes,  Next: Cleanup remote connections,  Prev: Home directories,  Up: Usage
+File: tramp.info,  Node: Remote processes,  Next: Cleanup remote connections,  Prev: Home directories,  Up: Usage
 
 5.6 Integration with other Emacs packages
 =========================================
@@ -3671,7 +3670,7 @@ information::) via
      (add-to-list 'tramp-connection-properties (list "/ssh:" "direct-async" t))
 
 
-File: docEvpyeb.info,  Node: Cleanup remote connections,  Next: Renaming remote files,  Prev: Remote processes,  Up: Usage
+File: tramp.info,  Node: Cleanup remote connections,  Next: Renaming remote files,  Prev: Remote processes,  Up: Usage
 
 5.7 Cleanup remote connections
 ==============================
@@ -3732,7 +3731,7 @@ TRAMP provides several ways to flush remote connections.
      ‘tramp-cleanup-all-connections’.
 
 
-File: docEvpyeb.info,  Node: Renaming remote files,  Next: Archive file names,  Prev: Cleanup remote connections,  Up: Usage
+File: tramp.info,  Node: Renaming remote files,  Next: Archive file names,  Prev: Cleanup remote connections,  Up: Usage
 
 5.8 Renaming remote files
 =========================
@@ -3826,7 +3825,7 @@ anymore.
      ‘tramp-rename-these-files’ must be confirmed.
 
 
-File: docEvpyeb.info,  Node: Archive file names,  Prev: Renaming remote files,  Up: Usage
+File: tramp.info,  Node: Archive file names,  Prev: Renaming remote files,  Up: Usage
 
 5.9 Archive file names
 ======================
@@ -3955,7 +3954,7 @@ your init file:
      (customize-set-variable 'tramp-archive-enabled nil)
 
 
-File: docEvpyeb.info,  Node: Bug Reports,  Next: Frequently Asked Questions,  Prev: Usage,  Up: Top
+File: tramp.info,  Node: Bug Reports,  Next: Frequently Asked Questions,  Prev: Usage,  Up: Top
 
 6 Reporting Bugs and Problems
 *****************************
@@ -4041,7 +4040,7 @@ active code, and uncomment the just commented code.
 configuration.
 
 
-File: docEvpyeb.info,  Node: Frequently Asked Questions,  Next: Files directories and localnames,  Prev: Bug Reports,  Up: Top
+File: tramp.info,  Node: Frequently Asked Questions,  Next: Files directories and localnames,  Prev: Bug Reports,  Up: Top
 
 7 Frequently Asked Questions
 ****************************
@@ -4867,7 +4866,7 @@ File: docEvpyeb.info,  Node: Frequently Asked Questions,  Next: Files directorie
    (1) It supports fingerprint readers driven by ‘fprintd’.
 
 
-File: docEvpyeb.info,  Node: Files directories and localnames,  Next: Traces and Profiles,  Prev: Frequently Asked Questions,  Up: Top
+File: tramp.info,  Node: Files directories and localnames,  Next: Traces and Profiles,  Prev: Frequently Asked Questions,  Up: Top
 
 8 How file names, directories and localnames are mangled and managed
 ********************************************************************
@@ -4881,7 +4880,7 @@ File: docEvpyeb.info,  Node: Files directories and localnames,  Next: Traces and
 * New operations::              Handling further operations in TRAMP.
 
 
-File: docEvpyeb.info,  Node: Temporary directory,  Next: Localname deconstruction,  Up: Files directories and localnames
+File: tramp.info,  Node: Temporary directory,  Next: Localname deconstruction,  Up: Files directories and localnames
 
 8.1 Where temporary files are kept
 ==================================
@@ -4908,7 +4907,7 @@ variable ‘tramp-temp-name-prefix’ temporarily:
      ⇒ "/tmp/my-prefix.HDfgDZ"
 
 
-File: docEvpyeb.info,  Node: Localname deconstruction,  Next: External packages,  Prev: Temporary directory,  Up: Files directories and localnames
+File: tramp.info,  Node: Localname deconstruction,  Next: External packages,  Prev: Temporary directory,  Up: Files directories and localnames
 
 8.2 Splitting a localname into its component parts
 ==================================================
@@ -4923,7 +4922,7 @@ By relying on the original handlers for localnames, TRAMP benefits from
 platform specific hacks to the original handlers.
 
 
-File: docEvpyeb.info,  Node: External packages,  Next: Extension packages,  Prev: Localname deconstruction,  Up: Files directories and localnames
+File: tramp.info,  Node: External packages,  Next: Extension packages,  Prev: Localname deconstruction,  Up: Files directories and localnames
 
 8.3 Integrating with external Lisp packages
 ===========================================
@@ -4995,7 +4994,7 @@ as follows:
 sentinels, and redisplay (updating the mode line).
 
 
-File: docEvpyeb.info,  Node: Extension packages,  Next: New operations,  Prev: External packages,  Up: Files directories and localnames
+File: tramp.info,  Node: Extension packages,  Next: New operations,  Prev: External packages,  Up: Files directories and localnames
 
 8.4 Adding new methods to TRAMP
 ===============================
@@ -5097,7 +5096,7 @@ of function ‘tramp-enable-foo-method’.  Add the following code in
 ‘tramp-enable-foo-method’ with ‘progn’ for the ‘;;;###autoload’ cookie.
 
 
-File: docEvpyeb.info,  Node: New operations,  Prev: Extension packages,  Up: Files directories and localnames
+File: tramp.info,  Node: New operations,  Prev: Extension packages,  Up: Files directories and localnames
 
 8.5 Handling further operations in TRAMP
 ========================================
@@ -5180,7 +5179,7 @@ specifiers, as documented in ‘tramp-expand-script’.
 ‘dir-locals-find-file’ for TRAMP's ‘tramp-sh’ backend.
 
 
-File: docEvpyeb.info,  Node: Traces and Profiles,  Next: GNU Free Documentation License,  Prev: Files directories and localnames,  Up: Top
+File: tramp.info,  Node: Traces and Profiles,  Next: GNU Free Documentation License,  Prev: Files directories and localnames,  Up: Top
 
 9 How to Customize Traces
 *************************
@@ -5255,7 +5254,7 @@ This user option can be adapted to your needs; a value of 0 means that
 there is no limit (no warning).
 
 
-File: docEvpyeb.info,  Node: GNU Free Documentation License,  Next: Function Index,  Prev: Traces and Profiles,  Up: Top
+File: tramp.info,  Node: GNU Free Documentation License,  Next: Function Index,  Prev: Traces and Profiles,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -5737,7 +5736,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docEvpyeb.info,  Node: Function Index,  Next: Variable Index,  Prev: GNU Free Documentation License,  Up: Top
+File: tramp.info,  Node: Function Index,  Next: Variable Index,  Prev: GNU Free Documentation License,  Up: Top
 
 Function Index
 **************
@@ -5814,7 +5813,7 @@ Function Index
                                                               (line 804)
 
 
-File: docEvpyeb.info,  Node: Variable Index,  Next: Key Index,  Prev: Function Index,  Up: Top
+File: tramp.info,  Node: Variable Index,  Next: Key Index,  Prev: Function Index,  Up: Top
 
 Variable Index
 **************
@@ -6058,7 +6057,7 @@ Variable Index
                                                               (line 745)
 
 
-File: docEvpyeb.info,  Node: Key Index,  Next: Concept Index,  Prev: Variable Index,  Up: Top
+File: tramp.info,  Node: Key Index,  Next: Concept Index,  Prev: Variable Index,  Up: Top
 
 Key Index
 *********
@@ -6070,7 +6069,7 @@ Key Index
 * C-x x @:                               Ad-hoc multi-hops.    (line 78)
 
 
-File: docEvpyeb.info,  Node: Concept Index,  Prev: Key Index,  Up: Top
+File: tramp.info,  Node: Concept Index,  Prev: Key Index,  Up: Top
 
 Concept Index
 *************
@@ -6475,87 +6474,87 @@ Concept Index
 
 
 Tag Table:
-Node: Top923
-Node: Overview5989
-Ref: Overview-Footnote-111382
-Node: Obtaining TRAMP11418
-Node: Quick Start Guide13953
-Ref: Quick Start Guide File name syntax14738
-Ref: Quick Start Guide ssh and plink methods15832
-Ref: Quick Start Guide su, sudo, doas, run0, androidsu and sg methods16379
-Ref: Quick Start Guide Combining ssh, plink, su, sudo, doas and run0 methods17269
-Ref: Quick Start Guide sudoedit method17864
-Ref: Quick Start Guide smb method18274
-Ref: Quick Start Guide GVFS-based methods18605
-Ref: Quick Start Guide GNOME Online Accounts based methods19049
-Ref: Quick Start Guide FUSE-based methods19591
-Ref: Quick Start Guide Android20462
-Node: Configuration20696
-Node: Optional methods23738
-Node: Connection types24638
-Node: Inline methods26082
-Node: External methods36175
-Node: GVFS-based methods45880
-Node: FUSE-based methods50130
-Node: Default Method52766
-Ref: Default Method-Footnote-155989
-Node: Default User56097
-Node: Default Host57630
-Node: Multi-hops58905
-Node: Firewalls63104
-Node: Customizing Methods64578
-Node: Customizing Completion66592
-Node: Password handling70086
-Ref: Using an authentication file70560
-Ref: Caching passwords72957
-Ref: Password handling-Footnote-173892
-Ref: Password handling-Footnote-273963
-Node: Connection caching74013
-Node: Predefined connection information74947
-Ref: Predefined connection information-Footnote-179754
-Node: Remote programs79850
-Node: Remote shell setup82765
-Node: Ssh setup93494
-Ref: Using ssh connection sharing95453
-Node: FUSE setup101823
-Ref: Setup of rclone method102811
-Ref: Setup of sshfs method103721
-Ref: FUSE setup-Footnote-1104213
-Node: Android shell setup104249
-Node: Kubernetes setup107551
-Node: Auto-save File Lock and Backup108627
-Node: Keeping files encrypted113081
-Node: Usage117914
-Node: File name syntax119340
-Node: Change file name syntax121441
-Node: File name completion122875
-Node: Ad-hoc multi-hops125940
-Ref: tramp-show-ad-hoc-proxies127075
-Ref: tramp-save-ad-hoc-proxies127766
-Node: Home directories131737
-Node: Remote processes133468
-Ref: Managing remote shell history139497
-Ref: Running a debugger on a remote host145108
-Ref: Running remote processes on MS Windows hosts146240
-Ref: Improving performance of asynchronous remote processes153673
-Node: Cleanup remote connections157474
-Node: Renaming remote files160344
-Node: Archive file names164665
-Node: Bug Reports169389
-Node: Frequently Asked Questions173334
-Ref: Frequently Asked Questions-Footnote-1206349
-Node: Files directories and localnames206414
-Node: Temporary directory207049
-Node: Localname deconstruction208153
-Node: External packages208838
-Node: Extension packages211875
-Node: New operations216119
-Node: Traces and Profiles219726
-Node: GNU Free Documentation License222747
-Node: Function Index247924
-Node: Variable Index252812
-Node: Key Index269841
-Node: Concept Index270127
+Node: Top919
+Node: Overview5987
+Ref: Overview-Footnote-111376
+Node: Obtaining TRAMP11412
+Node: Quick Start Guide13943
+Ref: Quick Start Guide File name syntax14724
+Ref: Quick Start Guide ssh and plink methods15818
+Ref: Quick Start Guide su, sudo, doas, run0, androidsu and sg methods16365
+Ref: Quick Start Guide Combining ssh, plink, su, sudo, doas and run0 methods17255
+Ref: Quick Start Guide sudoedit method17850
+Ref: Quick Start Guide smb method18260
+Ref: Quick Start Guide GVFS-based methods18591
+Ref: Quick Start Guide GNOME Online Accounts based methods19035
+Ref: Quick Start Guide FUSE-based methods19577
+Ref: Quick Start Guide Android20448
+Node: Configuration20682
+Node: Optional methods23720
+Node: Connection types24616
+Node: Inline methods26056
+Node: External methods36145
+Node: GVFS-based methods45846
+Node: FUSE-based methods50092
+Node: Default Method52724
+Ref: Default Method-Footnote-155943
+Node: Default User56051
+Node: Default Host57580
+Node: Multi-hops58851
+Node: Firewalls63046
+Node: Customizing Methods64516
+Node: Customizing Completion66526
+Node: Password handling70016
+Ref: Using an authentication file70486
+Ref: Caching passwords72883
+Ref: Password handling-Footnote-173818
+Ref: Password handling-Footnote-273889
+Node: Connection caching73939
+Node: Predefined connection information74869
+Ref: Predefined connection information-Footnote-179672
+Node: Remote programs79768
+Node: Remote shell setup82679
+Node: Ssh setup93404
+Ref: Using ssh connection sharing95359
+Node: FUSE setup101729
+Ref: Setup of rclone method102713
+Ref: Setup of sshfs method103623
+Ref: FUSE setup-Footnote-1104115
+Node: Android shell setup104151
+Node: Kubernetes setup107449
+Node: Auto-save File Lock and Backup108521
+Node: Keeping files encrypted112971
+Node: Usage117800
+Node: File name syntax119222
+Node: Change file name syntax121319
+Node: File name completion122749
+Node: Ad-hoc multi-hops125810
+Ref: tramp-show-ad-hoc-proxies126941
+Ref: tramp-save-ad-hoc-proxies127632
+Node: Home directories131603
+Node: Remote processes133330
+Ref: Managing remote shell history139355
+Ref: Running a debugger on a remote host144966
+Ref: Running remote processes on MS Windows hosts146098
+Ref: Improving performance of asynchronous remote processes153531
+Node: Cleanup remote connections157332
+Node: Renaming remote files160198
+Node: Archive file names164515
+Node: Bug Reports169235
+Node: Frequently Asked Questions173176
+Ref: Frequently Asked Questions-Footnote-1206187
+Node: Files directories and localnames206252
+Node: Temporary directory206883
+Node: Localname deconstruction207983
+Node: External packages208664
+Node: Extension packages211697
+Node: New operations215937
+Node: Traces and Profiles219540
+Node: GNU Free Documentation License222557
+Node: Function Index247730
+Node: Variable Index252614
+Node: Key Index269639
+Node: Concept Index269921
 
 End Tag Table
 

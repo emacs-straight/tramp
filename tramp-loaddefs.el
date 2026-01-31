@@ -268,8 +268,11 @@ empty string for the method name.")
 
 (custom-autoload 'tramp-default-host-alist "tramp" t)
 
-(defvar tramp-local-host-regexp (rx bos (| (literal tramp-system-name) (| "localhost" "127.0.0.1" "::1" "localhost4" "localhost6" "ip6-localhost" "ip6-loopback" "ipv6-localhost" "ipv6-loopback")) eos) "\
-Host names which are regarded as local host.
+(defvar tramp-local-host-names (list tramp-system-name "localhost" "127.0.0.1" "::1" "localhost4" "localhost6" "ip6-localhost" "ip6-loopback" "ipv6-localhost" "ipv6-loopback") "\
+List of host names which are regarded as local host.")
+
+(defvar tramp-local-host-regexp (rx-to-string `(: bos (| \, tramp-local-host-names) eos)) "\
+Regexp of host names which are regarded as local host.
 If the local host runs a chrooted environment, set this to nil.")
 
 (custom-autoload 'tramp-local-host-regexp "tramp" t)
@@ -1450,7 +1453,7 @@ UU-encode the region between BEG and END.
 ;;;### (autoloads nil "trampver" "trampver.el" (0 0 0 0))
 ;;; Generated autoloads from trampver.el
 
-(defconst tramp-version "2.8.1" "\
+(defconst tramp-version "2.8.1.1" "\
 This version of Tramp.")
 
 (defconst tramp-bug-report-address "tramp-devel@gnu.org" "\
